@@ -2,6 +2,7 @@ namespace MedManagementLibrary
 {
     public class Patient
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public DateTime Birthday { get; set; }
         public string Address { get; set; }
@@ -21,12 +22,13 @@ namespace MedManagementLibrary
             Prescriptions = new List<string>();
         }
 
-        // Override ToString to return name and birthday
+        // Override ToString to return ID and Name
         public override string ToString()
         {
-            return $"{Name} (Born on {Birthday:MMMM dd, yyyy})";
+            return $"[{ID}] {Name}";
         }
     }
 }
+
 
 
