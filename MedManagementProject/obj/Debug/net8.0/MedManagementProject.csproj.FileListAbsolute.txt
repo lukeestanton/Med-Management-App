@@ -16,3 +16,4 @@
 /Users/lukestanton/csharp/MedManagementProject/obj/Debug/net8.0/MedManagementProject.pdb
 /Users/lukestanton/csharp/MedManagementProject/obj/Debug/net8.0/MedManagementProject.genruntimeconfig.cache
 /Users/lukestanton/csharp/MedManagementProject/obj/Debug/net8.0/ref/MedManagementProject.dll
+/Users/lukestanton/csharp/MedManagementProject/obj/Debug/net8.0/MedManagementProject.sourcelink.json

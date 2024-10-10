@@ -1,20 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.PatientManagement"
-             Title="Patient Management">
-
-    <VerticalStackLayout Padding="10">
-        <!-- Bind to the whole Patient object, which uses ToString() -->
-        <CollectionView ItemsSource="{Binding Patients}" x:Name="PatientsCollectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding .}" /> <!-- Binding the entire object -->
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-        <!-- Button to cancel and go back -->
-        <Button Text="Cancel" Clicked="CancelClicked"/>
+             Title="PatientManagement"
+             NavigatedTo="PatientManagement_NavigatedTo"
+             >
+    <VerticalStackLayout>
+        <ListView
+            ItemsSource="{Binding Patients}"
+            ></ListView>
+        <Button Text="Add" Clicked="AddClicked"/>
+        <Button Text="Cancel" Clicked="CancelClicked" />
     </VerticalStackLayout>
 </ContentPage>
-

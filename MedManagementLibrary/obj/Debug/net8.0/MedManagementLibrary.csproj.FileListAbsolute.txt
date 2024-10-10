@@ -5,6 +5,7 @@
 /Users/lukestanton/csharp/MedManagementLibrary/obj/Debug/net8.0/MedManagementLibrary.AssemblyInfoInputs.cache
 /Users/lukestanton/csharp/MedManagementLibrary/obj/Debug/net8.0/MedManagementLibrary.AssemblyInfo.cs
 /Users/lukestanton/csharp/MedManagementLibrary/obj/Debug/net8.0/MedManagementLibrary.csproj.CoreCompileInputs.cache
+/Users/lukestanton/csharp/MedManagementLibrary/obj/Debug/net8.0/MedManagementLibrary.sourcelink.json
 /Users/lukestanton/csharp/MedManagementLibrary/obj/Debug/net8.0/MedManagementLibrary.dll
 /Users/lukestanton/csharp/MedManagementLibrary/obj/Debug/net8.0/refint/MedManagementLibrary.dll
 /Users/lukestanton/csharp/MedManagementLibrary/obj/Debug/net8.0/MedManagementLibrary.pdb
