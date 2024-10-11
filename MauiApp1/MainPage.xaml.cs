@@ -15,4 +15,10 @@ public partial class MainPage : ContentPage
 		Shell.Current.GoToAsync("//Patients");
     }
 
+	private void PhysicianManagerButtonClicked(object sender, EventArgs e)
+	{
+		Shell.Current.GoToAsync("//PhysicianManagement");
+	}
+
+
 }

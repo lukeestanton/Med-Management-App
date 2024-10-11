@@ -57,3 +57,15 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Views.PatientView.xaml
 build_metadata.AdditionalFiles.TargetPath = Views/PatientView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/PatientView.xaml
+
+[/Users/lukestanton/csharp/MauiApp1/Views/PhysicianManagement.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Views.PhysicianManagement.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/PhysicianManagement.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/PhysicianManagement.xaml
+
+[/Users/lukestanton/csharp/MauiApp1/Views/PhysicianView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Views.PhysicianView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/PhysicianView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/PhysicianView.xaml

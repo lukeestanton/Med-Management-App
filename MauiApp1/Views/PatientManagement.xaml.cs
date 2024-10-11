@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using MauiApp1.ViewModels;
-using MedManagementLibrary;
 
 namespace MauiApp1.Views
 {
