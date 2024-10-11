@@ -46,6 +46,18 @@ build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Resources.Styles.
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
 
+[/Users/lukestanton/csharp/MauiApp1/Views/AppointmentManagement.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Views.AppointmentManagement.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/AppointmentManagement.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/AppointmentManagement.xaml
+
+[/Users/lukestanton/csharp/MauiApp1/Views/AppointmentView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Views.AppointmentView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/AppointmentView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/AppointmentView.xaml
+
 [/Users/lukestanton/csharp/MauiApp1/Views/PatientManagement.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Views.PatientManagement.xaml

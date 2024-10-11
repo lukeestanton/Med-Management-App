@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using MedManagementLibrary;
 
 namespace MauiApp1.Views;
@@ -6,7 +5,6 @@ namespace MauiApp1.Views;
 [QueryProperty(nameof(PatientId), "patientId")]
 public partial class PatientView : ContentPage
 {
-	
 	public PatientView()
 	{
 		InitializeComponent();

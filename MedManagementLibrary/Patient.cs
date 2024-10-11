@@ -22,7 +22,6 @@ namespace MedManagementLibrary
             Prescriptions = new List<string>();
         }
 
-        // Override ToString to return ID and Name
         public override string ToString()
         {
             return $"[{ID}] {Name}";

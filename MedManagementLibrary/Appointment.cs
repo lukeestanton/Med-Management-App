@@ -1,17 +1,27 @@
-namespace MedManagementLibrary {
-    public class Appointment
+namespace MedManagementLibrary
 {
-    public Patient Patient { get; set; }
-    public Physician Physician { get; set; }
-    public DateTime AppointmentDate { get; set; }
-
-    public Appointment(Patient patient, Physician physician, DateTime appointmentDate)
+    public class Appointment
     {
-        Patient = patient;
-        Physician = physician;
-        AppointmentDate = appointmentDate;
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public DateTime AppointmentDate { get; set; }
+
+        private static int _idCounter = 1;
+
+        public Appointment()
+        {
+            Name = string.Empty;
+            AppointmentDate = DateTime.Now;
+        }
+
+        public override string ToString()
+        {
+            return $"[{ID}] {Name}";
+        }
     }
 }
-}
+
+
+
 
 

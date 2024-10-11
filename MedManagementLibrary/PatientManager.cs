@@ -10,7 +10,6 @@ namespace MedManagementLibrary
 
         private List<Patient> _patients;
 
-        // Constructor initializes the patient list with some sample patients
         private PatientManager()
         {
             _patients = new List<Patient>

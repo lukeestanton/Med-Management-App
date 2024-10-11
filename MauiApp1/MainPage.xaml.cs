@@ -1,24 +1,25 @@
-﻿namespace MauiApp1;
-
-using MedManagementLibrary;
-
-public partial class MainPage : ContentPage
+﻿namespace MauiApp1
 {
-	
-	public MainPage()
-	{
-		InitializeComponent();
-	}
-
-    private void PatientsClicked(object sender, EventArgs e)
+    public partial class MainPage : ContentPage
     {
-		Shell.Current.GoToAsync("//Patients");
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+
+        private void PatientsClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//Patients");
+        }
+
+        private void PhysicianManagerButtonClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//PhysicianManagement");
+        }
+
+        private void AppointmentsClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//AppointmentManagement");
+        }
     }
-
-	private void PhysicianManagerButtonClicked(object sender, EventArgs e)
-	{
-		Shell.Current.GoToAsync("//PhysicianManagement");
-	}
-
-
 }
