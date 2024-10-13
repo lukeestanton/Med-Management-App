@@ -3,17 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.PatientManagement"
              Title="PatientManagement"
-             NavigatedTo="PatientManagement_NavigatedTo"
-             >
+             NavigatedTo="PatientManagement_NavigatedTo">
+
     <VerticalStackLayout>
         <ListView
             ItemsSource="{Binding Patients}"
             SelectedItem="{Binding SelectedPatient}"
-            SelectionMode="Single"
-            ></ListView>
+            SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label FontAttributes="Bold" Grid.Column="0" Text="{Binding ID}"/>
+                            <Label Grid.Column="1" Text="{Binding Name}"/>
+                            <Button Grid.Column="2" Text="Edit" />
+                            <Button Grid.Column="3" Text="Delete" />                            
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
         <Button Text="Add" Clicked="AddClicked"/>
         <Button Text="Edit" Clicked="EditClicked"/>
         <Button Text="Delete" Clicked="DeleteClicked"/>
-        <Button Text="Cancel" Clicked="CancelClicked" />
+        <Button Text="Cancel" Clicked="CancelClicked"/>
     </VerticalStackLayout>
 </ContentPage>

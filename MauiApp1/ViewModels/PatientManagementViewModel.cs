@@ -12,11 +12,11 @@ namespace MauiApp1.ViewModels {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public Patient? SelectedPatient { get; set; }
+        public PatientViewModel? SelectedPatient { get; set; }
 
-        public ObservableCollection<Patient> Patients {
+        public ObservableCollection<PatientViewModel> Patients {
             get {
-                return new ObservableCollection<Patient>(PatientManager.Current.GetAllPatients());
+                return new ObservableCollection<PatientViewModel>(PatientManager.Current.GetAllPatients().Where(p=>p != null).Select(p => new PatientViewModel(p)));
             }            
         }
 

@@ -24,7 +24,13 @@ namespace MedManagementLibrary
 
         public override string ToString()
         {
-            return $"[{ID}] {Name}";
+            return Display;
+        }
+
+        public string Display {
+            get {
+                return $"[{ID}] {Name}";
+            }
         }
     }
 }
