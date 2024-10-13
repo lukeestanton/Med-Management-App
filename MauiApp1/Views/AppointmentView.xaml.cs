@@ -1,3 +1,4 @@
+using MauiApp1.ViewModels;
 using MedManagementLibrary;
 
 namespace MauiApp1.Views;
@@ -5,12 +6,16 @@ namespace MauiApp1.Views;
 [QueryProperty(nameof(AppointmentId), "appointmentId")]
 public partial class AppointmentView : ContentPage
 {
+	public int AppointmentId { get; set; }
+
+	private AppointmentViewModel viewModel;
+
     public AppointmentView()
     {
         InitializeComponent();
+		viewModel = new AppointmentViewModel();
+		BindingContext = viewModel;
     }
-
-    public int AppointmentId { get; set; }
 
     private void CancelClicked(object sender, EventArgs e)
     {
@@ -18,8 +23,9 @@ public partial class AppointmentView : ContentPage
     }
 
     private void AddClicked(object sender, EventArgs e) {
-        var appointmentToAdd = BindingContext as Appointment;
-        if (appointmentToAdd != null) {
+        var appointmentToAdd = viewModel.GetAppointmentModel();
+        if (appointmentToAdd != null) 
+		{
             AppointmentManager.Current.AddAppointment(appointmentToAdd);
         }
         Shell.Current.GoToAsync("//AppointmentManagement");
@@ -27,18 +33,6 @@ public partial class AppointmentView : ContentPage
 
     private void AppointmentView_NavigatedTo(object sender, EventArgs e)
     {
-        if (AppointmentId > 0)
-        {
-            var selectedAppointment = AppointmentManager.Current.GetAllAppointments().FirstOrDefault(a => a.ID == AppointmentId);
-            if (selectedAppointment != null)
-            {
-                BindingContext = selectedAppointment;
-            }
-        }
-        else
-        {
-            // Create a new appointment if appointmentId is 0
-            BindingContext = new Appointment();
-        }
+        viewModel.LoadAppointment(AppointmentId);
     }
 }

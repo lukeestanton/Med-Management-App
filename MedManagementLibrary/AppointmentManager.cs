@@ -20,13 +20,11 @@ namespace MedManagementLibrary
             };
         }
 
-        // Retrieve all appointments
         public List<Appointment> GetAllAppointments()
         {
             return _appointments;
         }
 
-        // Add or update an appointment by ID
         public void AddAppointment(Appointment appointment)
         {
             bool isAdd = false;
@@ -34,7 +32,7 @@ namespace MedManagementLibrary
             if (appointment.ID <= 0)
             {
                 appointment.ID = _appointments.Any() ? _appointments.Max(a => a.ID) + 1 : 1;
-                isAdd = true;  // Add new appointment
+                isAdd = true; 
             }
 
             if (isAdd) 
@@ -45,7 +43,6 @@ namespace MedManagementLibrary
             }
             else
             {
-                // Update existing appointment
                 var existingAppointment = _appointments.FirstOrDefault(a => a.ID == appointment.ID);
                 if (existingAppointment != null)
                 {
@@ -56,7 +53,6 @@ namespace MedManagementLibrary
             }
         }
 
-        // Delete an appointment by ID
         public void DeleteAppointment(int id)
         {
             var appointmentToRemove = _appointments.FirstOrDefault(a => a.ID == id);

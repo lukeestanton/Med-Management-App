@@ -13,13 +13,13 @@ namespace MauiApp1.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public Appointment? SelectedAppointment { get; set; }
+        public AppointmentViewModel? SelectedAppointment { get; set; }
 
-        public ObservableCollection<Appointment> Appointments
+        public ObservableCollection<AppointmentViewModel> Appointments
         {
             get
             {
-                return new ObservableCollection<Appointment>(AppointmentManager.Current.GetAllAppointments());
+                return new ObservableCollection<AppointmentViewModel>(AppointmentManager.Current.GetAllAppointments().Where(a => a != null).Select(a => new AppointmentViewModel(a)));
             }
         }
 
@@ -31,14 +31,13 @@ namespace MauiApp1.ViewModels
             }
 
             AppointmentManager.Current.DeleteAppointment(SelectedAppointment.ID);
-            Refresh();  // Refresh after deletion
+            Refresh();
         }
 
         public void Refresh()
         {
-            NotifyPropertyChanged(nameof(Appointments));  // Refresh appointments list
+            NotifyPropertyChanged(nameof(Appointments));
         }
     }
 }
-
 

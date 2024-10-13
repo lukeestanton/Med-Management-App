@@ -36,7 +36,7 @@ namespace MedManagementLibrary
 
             if (isAdd)
             {
-                _patients.Add(patient); // Add new patient
+                _patients.Add(patient);
                 Console.WriteLine($"New patient added: {patient.Name}, ID: {patient.ID}");
             }
             else
