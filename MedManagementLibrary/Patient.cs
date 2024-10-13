@@ -21,19 +21,5 @@ namespace MedManagementLibrary
             Diagnoses = new List<string>();
             Prescriptions = new List<string>();
         }
-
-        public override string ToString()
-        {
-            return Display;
-        }
-
-        public string Display {
-            get {
-                return $"[{ID}] {Name}";
-            }
-        }
     }
 }
-
-
-

@@ -19,18 +19,15 @@ namespace MedManagementLibrary
             };
         }
 
-        // Retrieve all patients
         public List<Patient> GetAllPatients()
         {
             return _patients;
         }
 
-        // Add a new patient
         public void AddPatient(Patient patient)
         {
             bool isAdd = false;
 
-            // Check if the patient has an ID; if not, assign a new one
             if (patient.ID <= 0)
             {
                 patient.ID = _patients.Any() ? _patients.Max(p => p.ID) + 1 : 1; // Assign new ID
@@ -44,7 +41,6 @@ namespace MedManagementLibrary
             }
             else
             {
-                // Update existing patient
                 var existingPatient = _patients.FirstOrDefault(p => p.ID == patient.ID);
                 if (existingPatient != null)
                 {
@@ -59,10 +55,6 @@ namespace MedManagementLibrary
                 }
             }
         }
-
-
-
-        // Delete a patient by ID
         public void DeletePatient(int id)
         {
             var patientToRemove = _patients.FirstOrDefault(p => p.ID == id);

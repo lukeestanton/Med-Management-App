@@ -2,9 +2,9 @@ namespace MedManagementLibrary
 {
     public class Physician
     {
-        public int ID { get; set; }  // New ID property
+        public int ID { get; set; } 
         public string Name { get; set; }
-        public string LicenseNumber { get; set; }  // Keep as regular property
+        public string LicenseNumber { get; set; }
         public DateTime GraduationDate { get; set; }
         public List<string> Specializations { get; set; }
 
@@ -16,11 +16,6 @@ namespace MedManagementLibrary
             Specializations = new List<string>();
         }
 
-        // Override ToString to return ID and Name
-        public override string ToString()
-        {
-            return $"[{ID}] {Name}";
-        }
     }
 }
 

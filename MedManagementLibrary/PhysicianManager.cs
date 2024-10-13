@@ -13,7 +13,6 @@ namespace MedManagementLibrary
 
         private PhysicianManager()
         {
-            // Initialize with some sample physicians
             _physicians = new List<Physician>
             {
                 new Physician { ID = 1, Name = "Dr. John Smith", LicenseNumber = "12345", GraduationDate = new DateTime(2010, 5, 23), Specializations = new List<string> { "Cardiology" } },
@@ -21,18 +20,15 @@ namespace MedManagementLibrary
             };
         }
 
-        // Retrieve all physicians
         public List<Physician> GetAllPhysicians()
         {
             return _physicians;
         }
 
-        // Add or update a physician
         public void AddPhysician(Physician physician)
         {
             bool isAdd = false;
 
-            // Assign a new ID if the physician is new
             if (physician.ID <= 0)
             {
                 physician.ID = _physicians.Any() ? _physicians.Max(p => p.ID) + 1 : 1;
@@ -42,10 +38,10 @@ namespace MedManagementLibrary
             if (isAdd)
             {
                 _physicians.Add(physician);
+                Console.WriteLine($"New physician added: {physician.Name}, ID: {physician.ID}");
             }
             else
             {
-                // Update existing physician
                 var existingPhysician = _physicians.FirstOrDefault(p => p.ID == physician.ID);
                 if (existingPhysician != null)
                 {
@@ -53,11 +49,11 @@ namespace MedManagementLibrary
                     existingPhysician.LicenseNumber = physician.LicenseNumber;
                     existingPhysician.GraduationDate = physician.GraduationDate;
                     existingPhysician.Specializations = physician.Specializations;
+                    Console.WriteLine($"Patient updated: {existingPhysician.Name}, ID: {existingPhysician.ID}");
                 }
             }
         }
 
-        // Delete a physician by ID
         public void DeletePhysician(int id)
         {
             var physicianToRemove = _physicians.FirstOrDefault(p => p.ID == id);

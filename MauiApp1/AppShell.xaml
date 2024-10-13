@@ -22,7 +22,6 @@
         ContentTemplate="{DataTemplate views:PatientView}"
         Route="PatientDetails" />
 
-    <!-- Add these routes for Physician Management -->
     <ShellContent
         Title="Manage Physicians"
         ContentTemplate="{DataTemplate views:PhysicianManagement}"
@@ -32,6 +31,7 @@
         Title="Physician Details"
         ContentTemplate="{DataTemplate views:PhysicianView}"
         Route="PhysicianDetails" />
+
 
     <ShellContent 
         Title="Manage Appointments" 

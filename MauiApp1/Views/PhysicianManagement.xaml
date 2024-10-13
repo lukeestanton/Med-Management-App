@@ -1,18 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.PhysicianManagement"
              Title="Physician Management"
-             NavigatedTo="PhysicianManagement_NavigatedTo"
-             >            
+             NavigatedTo="PhysicianManagement_NavigatedTo">
+
     <VerticalStackLayout>
         <ListView
-            ItemsSource="{Binding Physicians}" 
+            ItemsSource="{Binding Physicians}"
             SelectedItem="{Binding SelectedPhysician}"
             SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label FontAttributes="Bold" Grid.Column="0" Text="{Binding ID}"/>
+                            <Label Grid.Column="1" Text="{Binding Name}"/>
+                            <Button Grid.Column="2" Text="Edit" />
+                            <Button Grid.Column="3" Text="Delete" />                            
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Add" Clicked="AddClicked" />
-        <Button Text="Edit" Clicked="EditClicked" />
-        <Button Text="Delete" Clicked="DeleteClicked" />
-        <Button Text="Cancel" Clicked="CancelClicked" />
+        
+        <Button Text="Add" Clicked="AddClicked"/>
+        <Button Text="Edit" Clicked="EditClicked"/>
+        <Button Text="Delete" Clicked="DeleteClicked"/>
+        <Button Text="Cancel" Clicked="CancelClicked"/>
     </VerticalStackLayout>
 </ContentPage>
+

@@ -13,18 +13,6 @@
             <Label Grid.Column="0" Text="Name:"/>
             <Entry Grid.Column="1" Text="{Binding Name}"/>
         </Grid>
-
-        <!-- License Number Field (Physician-specific) -->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="10*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="License Number:"/>
-            <Entry Grid.Column="1" Text="{Binding LicenseNumber}" />
-        </Grid>
-
-        <!-- Action Buttons -->
         <Button Text="Ok" Clicked="AddClicked" />
         <Button Text="Cancel" Clicked="CancelClicked" />
     </VerticalStackLayout>
