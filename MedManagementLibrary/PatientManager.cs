@@ -30,7 +30,7 @@ namespace MedManagementLibrary
 
             if (patient.ID <= 0)
             {
-                patient.ID = _patients.Any() ? _patients.Max(p => p.ID) + 1 : 1; // Assign new ID
+                patient.ID = _patients.Any() ? _patients.Max(p => p.ID) + 1 : 1;
                 isAdd = true;
             }
 

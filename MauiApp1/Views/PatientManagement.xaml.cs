@@ -35,6 +35,10 @@ namespace MauiApp1.Views
         private void PatientManagement_NavigatedTo(object sender, EventArgs e)
         {
             (BindingContext as PatientManagementViewModel)?.Refresh();
+        }
+
+        private void RefreshClicked(object sender, EventArgs e) {
+            (BindingContext as PatientManagementViewModel)?.Refresh();
         }        
     }
 }

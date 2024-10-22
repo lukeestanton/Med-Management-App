@@ -1,5 +1,7 @@
 using System;
 using System.ComponentModel;
+using System.Windows.Input;
+using System.Xml.Serialization;
 using MedManagementLibrary;
 
 namespace MauiApp1.ViewModels;
@@ -25,11 +27,27 @@ public class PatientViewModel : INotifyPropertyChanged
     public PatientViewModel()
     {
         model = new Patient(); 
+        SetupCommands();
     }
 
-    public PatientViewModel(Patient _model)
+    public PatientViewModel(Patient? _model)
     {
         model = _model ?? new Patient();
+        SetupCommands();
+    }
+
+    public ICommand? DeleteCommand { get; set; }
+    public ICommand? EditCommand { get; set; }
+
+    public void SetupCommands() {
+        DeleteCommand = new Command(DoDelete);
+    }
+
+    private void DoDelete() {
+        if(ID > 0) {
+            PatientManager.Current.DeletePatient(ID);
+            Shell.Current.GoToAsync("//Patients");
+        }   
     }
 
     public void LoadPatient(int patientId)

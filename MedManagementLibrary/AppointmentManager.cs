@@ -34,12 +34,10 @@ namespace MedManagementLibrary
                 appointment.ID = _appointments.Any() ? _appointments.Max(a => a.ID) + 1 : 1;
                 isAdd = true; 
             }
-
             if (isAdd) 
             {
                 _appointments.Add(appointment);
                 Console.WriteLine($"New Appointment added: {appointment.Name}, ID: {appointment.ID}");
-
             }
             else
             {
