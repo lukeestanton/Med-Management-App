@@ -14,9 +14,21 @@ namespace MauiApp1.ViewModels {
 
         public PatientViewModel? SelectedPatient { get; set; }
 
+        public string? Query { get; set; }
+
         public ObservableCollection<PatientViewModel> Patients {
             get {
-                return new ObservableCollection<PatientViewModel>(PatientManager.Current.GetAllPatients().Where(p=>p != null).Select(p => new PatientViewModel(p)));
+                var retVal = new ObservableCollection<PatientViewModel>(
+                    PatientManager
+                    .Current
+                    .GetAllPatients()
+                    .Where(p=>p != null)
+                    .Where(p => p.Name.ToUpper().Contains(Query?.ToUpper() ?? string.Empty))
+                    .Take(100)
+                    .Select(p => new PatientViewModel(p))
+                    );
+
+                return retVal;
             }            
         }
 
