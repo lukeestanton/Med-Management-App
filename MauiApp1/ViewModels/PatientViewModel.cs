@@ -41,6 +41,7 @@ public class PatientViewModel : INotifyPropertyChanged
 
     public void SetupCommands() {
         DeleteCommand = new Command(DoDelete);
+        EditCommand = new Command((p) => DoEdit(p as PatientViewModel));
     }
 
     private void DoDelete() {
@@ -48,6 +49,16 @@ public class PatientViewModel : INotifyPropertyChanged
             PatientManager.Current.DeletePatient(ID);
             Shell.Current.GoToAsync("//Patients");
         }   
+    }
+
+    private void DoEdit(PatientViewModel? pvm) 
+    {
+        if (pvm == null)
+            {
+                return;
+            }
+        var selectedPatientId = pvm?.ID ?? 0;
+        Shell.Current.GoToAsync($"//PatientDetails?patientId={selectedPatientId}");
     }
 
     public void LoadPatient(int patientId)
