@@ -32,7 +32,6 @@
         ContentTemplate="{DataTemplate views:PhysicianView}"
         Route="PhysicianDetails" />
 
-
     <ShellContent 
         Title="Manage Appointments" 
         Route="AppointmentManagement" 

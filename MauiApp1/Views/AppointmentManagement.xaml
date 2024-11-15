@@ -7,31 +7,49 @@
     <VerticalStackLayout>
         <ListView
             ItemsSource="{Binding Appointments}"
-            SelectedItem="{Binding SelectedAppointment}"
-            SelectionMode="Single">
+            >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="10*"/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Label FontAttributes="Bold" Grid.Column="0" Text="{Binding ID}"/>
-                            <Label Grid.Column="1" Text="{Binding Name}"/>
-                            <Button Grid.Column="2" Text="Edit" />
-                            <Button Grid.Column="3" Text="Delete" />                            
+                            <!-- Column 0: Patient Display -->
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="Patient:"/>
+                                <Label Grid.Column="1" Text="{Binding PatientName}"/>
+                            </Grid>
+                            <!-- Column 1: Start Time Display -->
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="Appointment Start:"/>
+                                <Label Grid.Column="1" Text="{Binding StartTime, StringFormat='{0:g}'}"/>
+                            </Grid>
+                            <!-- Column 2: End Time Display -->
+                            <Grid Grid.Column="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="Appointment End:"/>
+                                <Label Grid.Column="1" Text="{Binding EndTime, StringFormat='{0:g}'}"/>
+                            </Grid>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        <Button Text="Add" Clicked="AddClicked"/>
-        <Button Text="Edit" Clicked="EditClicked"/>
-        <Button Text="Delete" Clicked="DeleteClicked"/>
+        <Button Text="Schedule Appointment" Clicked="AddClicked"/>
         <Button Text="Cancel" Clicked="CancelClicked"/>
     </VerticalStackLayout>
 </ContentPage>

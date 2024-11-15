@@ -5,6 +5,9 @@
              Title="AppointmentView"
              NavigatedTo="AppointmentView_NavigatedTo">
     <VerticalStackLayout>
+        <Label Text="Patient" />
+        <Picker 
+            />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

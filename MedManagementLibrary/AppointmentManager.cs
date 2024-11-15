@@ -15,8 +15,8 @@ namespace MedManagementLibrary
         {
             _appointments = new List<Appointment>
             {
-                new Appointment { ID = 1, Name = "Check-up with Dr. Smith", AppointmentDate = DateTime.Now.AddDays(1) },
-                new Appointment { ID = 2, Name = "Consultation with Dr. Johnson", AppointmentDate = DateTime.Now.AddDays(2) }
+                new Appointment { ID = 1, StartTime = DateTime.Now.AddDays(1), EndTime = DateTime.Now.AddDays(1).AddHours(1), PatientID = 1 },
+                new Appointment { ID = 2, StartTime = DateTime.Now.AddDays(2), EndTime = DateTime.Now.AddDays(2).AddHours(1), PatientID = 2 }
             };
         }
 
@@ -45,7 +45,7 @@ namespace MedManagementLibrary
                 if (existingAppointment != null)
                 {
                     existingAppointment.Name = appointment.Name;
-                    existingAppointment.AppointmentDate = appointment.AppointmentDate;
+                    existingAppointment.StartTime = appointment.StartTime;
                     Console.WriteLine($"Appointment updated: {existingAppointment.Name}, ID: {existingAppointment.ID}");
                 }
             }

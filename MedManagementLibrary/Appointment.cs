@@ -4,12 +4,16 @@ namespace MedManagementLibrary
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public DateTime AppointmentDate { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int PatientID { get; set; }
 
         public Appointment()
         {
             Name = string.Empty;
-            AppointmentDate = DateTime.Now;
+            StartTime = DateTime.Now;
+            EndTime = DateTime.Now;
+            PatientID = 0;
         }
     }
 }
