@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using MedManagementLibrary;
@@ -11,7 +12,6 @@ namespace MauiApp1.ViewModels
 
         public int ID => model.ID;
 
-        // Property to get and set the appointment's name (if needed)
         public string Name
         {
             get => model.Name;
@@ -25,7 +25,36 @@ namespace MauiApp1.ViewModels
             }
         }
 
-        // New property to get the patient's name
+    private ObservableCollection<Patient> _patients;
+    public ObservableCollection<Patient> Patients
+    {
+        get => _patients;
+        set
+        {
+            if (_patients != value)
+            {
+                _patients = value;
+                NotifyPropertyChanged(nameof(Patients));
+            }
+        }
+    }
+
+        private Patient _selectedPatient;
+        public Patient SelectedPatient
+        {
+            get => _selectedPatient;
+            set
+            {
+                if (_selectedPatient != value)
+                {
+                    _selectedPatient = value;
+                    model.PatientID = _selectedPatient?.ID ?? 0;
+                    NotifyPropertyChanged(nameof(SelectedPatient));
+                }
+            }
+        }
+
+
         public string PatientName
         {
             get
@@ -35,7 +64,6 @@ namespace MauiApp1.ViewModels
             }
         }
 
-        // Property for StartTime
         public DateTime StartTime
         {
             get => model.StartTime;
@@ -49,7 +77,6 @@ namespace MauiApp1.ViewModels
             }
         }
 
-        // Property for EndTime
         public DateTime EndTime
         {
             get => model.EndTime;
@@ -66,26 +93,33 @@ namespace MauiApp1.ViewModels
         public AppointmentViewModel()
         {
             model = new Appointment();
+            Patients = new ObservableCollection<Patient>(PatientManager.Current.GetAllPatients());
         }
 
         public AppointmentViewModel(Appointment _model)
         {
             model = _model ?? new Appointment();
+            Patients = new ObservableCollection<Patient>(PatientManager.Current.GetAllPatients());
+            _selectedPatient = Patients.FirstOrDefault(p => p.ID == model.PatientID);
         }
 
         public void LoadAppointment(int appointmentId)
         {
+            Patients = new ObservableCollection<Patient>(PatientManager.Current.GetAllPatients());
             if (appointmentId > 0)
             {
                 var selectedAppointment = AppointmentManager.Current.GetAllAppointments().FirstOrDefault(a => a.ID == appointmentId);
                 if (selectedAppointment != null)
                 {
                     model = selectedAppointment;
+                    // Update SelectedPatient based on the loaded appointment
+                    _selectedPatient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == model.PatientID);
                 }
             }
             else
             {
                 model = new Appointment();
+                _selectedPatient = null;
             }
             NotifyAllPropertiesChanged();
         }
@@ -95,6 +129,7 @@ namespace MauiApp1.ViewModels
             NotifyPropertyChanged(nameof(ID));
             NotifyPropertyChanged(nameof(Name));
             NotifyPropertyChanged(nameof(PatientName));
+            NotifyPropertyChanged(nameof(SelectedPatient));
             NotifyPropertyChanged(nameof(StartTime));
             NotifyPropertyChanged(nameof(EndTime));
         }

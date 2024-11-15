@@ -4,10 +4,18 @@
              x:Class="MauiApp1.Views.AppointmentView"
              Title="AppointmentView"
              NavigatedTo="AppointmentView_NavigatedTo">
-    <VerticalStackLayout>
-        <Label Text="Patient" />
-        <Picker 
-            />
+        <VerticalStackLayout>
+        <Label Text="Select a Patient" />
+        <ListView 
+            ItemsSource="{Binding Patients}"
+            SelectedItem="{Binding SelectedPatient}"
+            HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -16,6 +24,14 @@
             <Label Grid.Column="0" Text="Appointment Name:"/>
             <Entry Grid.Column="1" Text="{Binding Name}"/>
         </Grid>
+        <Label Text="Start Time" />
+        <DatePicker Date="{Binding StartTime}" />
+        <TimePicker Time="{Binding StartTime}" />
+
+        <Label Text="End Time" />
+        <DatePicker Date="{Binding EndTime}" />
+        <TimePicker Time="{Binding EndTime}" />
+
         <Button 
             Text="Ok" 
             Clicked="AddClicked" 

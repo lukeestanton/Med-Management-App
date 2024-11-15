@@ -1,12 +1,28 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MedManagementLibrary
 {
     public class PatientManager
     {
-        private static PatientManager? _current;
-        public static PatientManager Current => _current ??= new PatientManager();
+        private static readonly object _lock = new object();
+        private static PatientManager? _instance;
+
+        public static PatientManager Current
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new PatientManager();
+                    }
+                    return _instance;
+                }
+            }
+        }
 
         private List<Patient> _patients;
 
@@ -14,8 +30,24 @@ namespace MedManagementLibrary
         {
             _patients = new List<Patient>
             {
-                new Patient { ID = 1, Name = "John Doe", Birthday = new DateTime(2000, 1, 21), Address = "123 Main St", Race = "Caucasian", Gender = "Male" },
-                new Patient { ID = 2, Name = "Jane Smith", Birthday = new DateTime(2003, 5, 23), Address = "456 Oak Ave", Race = "African American", Gender = "Female" }
+                new Patient
+                {
+                    ID = 1,
+                    Name = "John Doe",
+                    Birthday = new DateTime(2000, 1, 21),
+                    Address = "123 Main St",
+                    Race = "Caucasian",
+                    Gender = "Male"
+                },
+                new Patient
+                {
+                    ID = 2,
+                    Name = "Jane Smith",
+                    Birthday = new DateTime(2003, 5, 23),
+                    Address = "456 Oak Ave",
+                    Race = "African American",
+                    Gender = "Female"
+                }
             };
         }
 

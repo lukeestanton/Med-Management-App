@@ -17,6 +17,12 @@ public partial class AppointmentView : ContentPage
 		BindingContext = viewModel;
     }
 
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+        viewModel.LoadAppointment(AppointmentId);
+    }
+
     private void CancelClicked(object sender, EventArgs e)
     {
         Shell.Current.GoToAsync("//AppointmentManagement");
