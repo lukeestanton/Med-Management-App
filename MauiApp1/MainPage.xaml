@@ -9,6 +9,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <!-- Button to Manage Patients -->
@@ -19,6 +20,9 @@
             
             <!-- Button to Manage Appointments -->
             <Button Grid.Row="2" Text="Manage Appointments" Clicked="AppointmentsClicked" />
+
+            <!-- Button to Manage Treatments -->
+            <Button Grid.Row="3" Text="Manage Treatments" Clicked="OnManageTreatmentsClicked" />
 
         </Grid>
     </ScrollView>

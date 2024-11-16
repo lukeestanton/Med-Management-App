@@ -21,5 +21,10 @@
         {
             Shell.Current.GoToAsync("//AppointmentManagement");
         }
+
+        private void OnManageTreatmentsClicked(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("//Treatments");
+        }
     }
 }

@@ -30,7 +30,6 @@
                             </Grid.ColumnDefinitions>
                             <Label FontAttributes="Bold" Grid.Column="0" Text="{Binding ID}"/>
                             <Label Grid.Column="1" Text="{Binding Name}"/>
-                            <Button Grid.Column="2" Text="Edit" Command="{Binding EditCommand}" CommandParameter="{Binding}"/>
                             <Button Grid.Column="3" Text="Delete" Command="{Binding DeleteCommand}" Clicked="RefreshClicked"/>                            
                         </Grid>
                     </ViewCell>
@@ -40,7 +39,6 @@
         
         <Button Text="Add" Clicked="AddClicked"/>
         <Button Text="Edit" Clicked="EditClicked"/>
-        <Button Text="Delete" Clicked="DeleteClicked"/>
         <Button Text="Cancel" Clicked="CancelClicked"/>
     </VerticalStackLayout>
 </ContentPage>
