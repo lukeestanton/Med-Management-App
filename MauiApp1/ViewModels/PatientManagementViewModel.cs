@@ -42,7 +42,8 @@ namespace MauiApp1.ViewModels {
             Refresh();
         } 
 
-        public void Refresh() {
+        public void Refresh() 
+        {
             NotifyPropertyChanged(nameof(Patients));
         }
     }

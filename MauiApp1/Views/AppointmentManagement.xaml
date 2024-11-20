@@ -1,56 +1,63 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiApp1.ViewModels"
              x:Class="MauiApp1.Views.AppointmentManagement"
              Title="Appointment Management"
              NavigatedTo="AppointmentManagement_NavigatedTo">
-    <VerticalStackLayout>
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+
+        <!-- Search Bar -->
+        <SearchBar Placeholder="Search Appointments"
+                   Text="{Binding Query}"
+                   SearchCommand="{Binding SearchCommand}" />
+
+        <!-- Appointments List -->
         <ListView
+            x:Name="AppointmentsListView"
             ItemsSource="{Binding Appointments}"
-            >
+            SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}"
+            HasUnevenRows="True"
+            SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
+                        <Grid Padding="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
-                            <!-- Column 0: Patient Display -->
-                            <Grid Grid.Column="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Text="Patient:"/>
-                                <Label Grid.Column="1" Text="{Binding PatientName}"/>
-                            </Grid>
-                            <!-- Column 1: Start Time Display -->
-                            <Grid Grid.Column="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Text="Appointment Start:"/>
-                                <Label Grid.Column="1" Text="{Binding StartTime, StringFormat='{0:g}'}"/>
-                            </Grid>
-                            <!-- Column 2: End Time Display -->
-                            <Grid Grid.Column="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Text="Appointment End:"/>
-                                <Label Grid.Column="1" Text="{Binding EndTime, StringFormat='{0:g}'}"/>
-                            </Grid>
+
+                            <!-- Patient Name -->
+                            <Label Grid.Column="0" Text="{Binding PatientName}" />
+
+                            <!-- Start Time -->
+                            <Label Grid.Column="1" Text="{Binding StartTime}" />
+
+                            <!-- End Time -->
+                            <Label Grid.Column="2" Text="{Binding EndTime}" />
+
+                            <!-- Total Price -->
+                            <Label Grid.Column="3" Text="{Binding Price, StringFormat='{}{0:C}'}" HorizontalTextAlignment="End" />
+
+                            <!-- Insurance Price -->
+                            <Label Grid.Column="4" Text="{Binding InsurancePrice, StringFormat='{}{0:C}'}" HorizontalTextAlignment="End" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Schedule Appointment" Clicked="AddClicked"/>
-        <Button Text="Cancel" Clicked="CancelClicked"/>
+
+        <!-- Action Buttons -->
+        <HorizontalStackLayout Spacing="20" Padding="0,10,0,0">
+            <Button Text="Schedule Appointment" Command="{Binding AddCommand}" />
+            <Button Text="Edit Appointment" Command="{Binding EditCommand}" IsEnabled="{Binding IsAppointmentSelected}" />
+            <Button Text="Delete Appointment" Command="{Binding DeleteCommand}" IsEnabled="{Binding IsAppointmentSelected}" />
+            <Button Text="Cancel" Command="{Binding CancelCommand}" />
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
-

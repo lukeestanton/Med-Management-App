@@ -37,7 +37,8 @@ namespace MedManagementLibrary
                     Birthday = new DateTime(2000, 1, 21),
                     Address = "123 Main St",
                     Race = "Caucasian",
-                    Gender = "Male"
+                    Gender = "Male",
+                    InsurancePlan = new Insurance { Name = "Basic Plan", CoveragePercentage = 0.7m }
                 },
                 new Patient
                 {
@@ -46,7 +47,18 @@ namespace MedManagementLibrary
                     Birthday = new DateTime(2003, 5, 23),
                     Address = "456 Oak Ave",
                     Race = "African American",
-                    Gender = "Female"
+                    Gender = "Female",
+                    InsurancePlan = new Insurance { Name = "Premium Plan", CoveragePercentage = 0.9m }
+                },
+                new Patient
+                {
+                    ID = 3,
+                    Name = "Luke Staton",
+                    Birthday = new DateTime(2003, 12, 1),
+                    Address = "456 Tally Way",
+                    Race = "White",
+                    Gender = "Male",
+                    InsurancePlan = new Insurance { Name = "TrumpCare", CoveragePercentage = 1.0m }
                 }
             };
         }
@@ -65,11 +77,9 @@ namespace MedManagementLibrary
                 patient.ID = _patients.Any() ? _patients.Max(p => p.ID) + 1 : 1;
                 isAdd = true;
             }
-
             if (isAdd)
             {
                 _patients.Add(patient);
-                Console.WriteLine($"New patient added: {patient.Name}, ID: {patient.ID}");
             }
             else
             {
@@ -83,7 +93,6 @@ namespace MedManagementLibrary
                     existingPatient.Gender = patient.Gender;
                     existingPatient.Diagnoses = patient.Diagnoses;
                     existingPatient.Prescriptions = patient.Prescriptions;
-                    Console.WriteLine($"Patient updated: {existingPatient.Name}, ID: {existingPatient.ID}");
                 }
             }
         }

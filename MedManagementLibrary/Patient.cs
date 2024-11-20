@@ -10,6 +10,8 @@ namespace MedManagementLibrary
         public string Gender { get; set; }
         public List<string> Diagnoses { get; set; }
         public List<string> Prescriptions { get; set; }
+        public int InsurancePlanID { get; set; }
+        public Insurance? InsurancePlan { get; set; }
 
         public Patient()
         {
@@ -20,6 +22,7 @@ namespace MedManagementLibrary
             Gender = string.Empty;
             Diagnoses = new List<string>();
             Prescriptions = new List<string>();
+            InsurancePlanID = 0;
         }
     }
 }

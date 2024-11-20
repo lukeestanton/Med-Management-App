@@ -7,18 +7,20 @@ namespace MedManagementLibrary
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int PatientID { get; set; }
+        public List<int> TreatmentIDs { get; set; }
+
+        // Optional: Navigation Property
+        public Patient? Patient { get; set; }
 
         public Appointment()
         {
             Name = string.Empty;
             StartTime = DateTime.Now;
-            EndTime = DateTime.Now;
+            EndTime = DateTime.Now.AddHours(1);
             PatientID = 0;
+            TreatmentIDs = new List<int>();
+            Patient = null;
         }
     }
 }
-
-
-
-
 

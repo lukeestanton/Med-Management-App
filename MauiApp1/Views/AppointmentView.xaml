@@ -1,43 +1,87 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiApp1.ViewModels"
              x:Class="MauiApp1.Views.AppointmentView"
-             Title="AppointmentView"
+             Title="Appointment Details"
              NavigatedTo="AppointmentView_NavigatedTo">
-        <VerticalStackLayout>
-        <Label Text="Select a Patient" />
-        <ListView 
-            ItemsSource="{Binding Patients}"
-            SelectedItem="{Binding SelectedPatient}"
-            HasUnevenRows="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Name}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="10*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Appointment Name:"/>
-            <Entry Grid.Column="1" Text="{Binding Name}"/>
-        </Grid>
-        <Label Text="Start Time" />
-        <DatePicker Date="{Binding StartTime}" />
-        <TimePicker Time="{Binding StartTime}" />
 
-        <Label Text="End Time" />
-        <DatePicker Date="{Binding EndTime}" />
-        <TimePicker Time="{Binding EndTime}" />
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Add other converters here if needed -->
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-        <Button 
-            Text="Ok" 
-            Clicked="AddClicked" 
-            />
-        <Button 
-            Text="Cancel" 
-            Clicked="CancelClicked" />
-    </VerticalStackLayout>
+    <ContentPage.BindingContext>
+        <viewModels:AppointmentViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Appointment Name -->
+            <Label Text="Appointment Name" FontAttributes="Bold" />
+            <Entry Text="{Binding Name}" Placeholder="Enter appointment name" />
+
+            <!-- Select Patient -->
+            <Label Text="Select a Patient" FontAttributes="Bold" />
+            <ListView 
+                ItemsSource="{Binding Patients}"
+                SelectedItem="{Binding SelectedPatient}"
+                HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Appointment Start Time -->
+            <Label Text="Start Time" FontAttributes="Bold" />
+            <DatePicker Date="{Binding StartDate}" MinimumDate="{Binding MinStartDate}" />
+            <TimePicker Time="{Binding StartTime, Mode=TwoWay}" />
+
+            <!-- Appointment End Time -->
+            <Label Text="End Time" FontAttributes="Bold" />
+            <DatePicker Date="{Binding EndDate}" MinimumDate="{Binding StartDate}" />
+            <TimePicker Time="{Binding EndTime, Mode=TwoWay}" />
+
+            <!-- Select Treatments -->
+            <Label Text="Select Treatments" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding AvailableTreatments}"
+                            SelectionMode="Multiple"
+                            SelectedItems="{Binding SelectedTreatments, Mode=TwoWay}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="5">
+                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                            <Label Text="{Binding Name}" VerticalOptions="Center" Margin="10,0,0,0" />
+                            <Label Text="{Binding Price, StringFormat='{}{0:C}'}" VerticalOptions="Center" Margin="10,0,0,0" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Insurance Information -->
+            <Label Text="Patient Insurance" FontAttributes="Bold" />
+            <Label Text="{Binding PatientInsurance.Name, FallbackValue='No Insurance'}" />
+
+            <!-- Pricing Information -->
+            <Label Text="Total Price" FontAttributes="Bold" />
+            <Label Text="{Binding Price, StringFormat='{}{0:C}'}" />
+
+            <Label Text="Price After Insurance" FontAttributes="Bold" />
+            <Label Text="{Binding InsurancePrice, StringFormat='{}{0:C}', TargetNullValue='N/A'}" />
+
+            <!-- Action Buttons -->
+            <HorizontalStackLayout Spacing="20" Padding="0,20,0,0">
+                <Button Text="Ok" 
+                        Command="{Binding AddOrUpdateCommand}" />
+
+                <Button Text="Cancel" 
+                        Command="{Binding CancelCommand}" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

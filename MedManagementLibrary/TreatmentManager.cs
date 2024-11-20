@@ -33,25 +33,25 @@ namespace MedManagementLibrary
                 {
                     ID = 1,
                     Name = "Flu Shot",
-                    Price = 20
+                    Price = 20.00m
                 },
                 new Treatment
                 {
                     ID = 2,
                     Name = "Covid Test",
-                    Price = 40
+                    Price = 40.00m
                 },
                 new Treatment
                 {
                     ID = 3,
                     Name = "Strep Test",
-                    Price = 50
+                    Price = 50.00m
                 },
                 new Treatment
                 {
                     ID = 4,
                     Name = "Heart Surgery",
-                    Price = 900
+                    Price = 900.00m
                 },
             };
         }
@@ -88,7 +88,7 @@ namespace MedManagementLibrary
 
         public void DeleteTreatment(int id)
         {
-            var treatmentToRemove = _treatments.Find(t => t.ID == id);
+            var treatmentToRemove = _treatments.FirstOrDefault(t => t.ID == id);
             if (treatmentToRemove != null)
             {
                 _treatments.Remove(treatmentToRemove);

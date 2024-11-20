@@ -9,8 +9,7 @@ public class Insurance
     public decimal CoveragePercentage { get; set; }
 
     public Insurance() {
-        Name = string.Empty;
+        Name = "No Insurance";
         CoveragePercentage = 0;
     }
-
 }

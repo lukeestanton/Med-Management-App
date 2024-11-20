@@ -1,9 +1,13 @@
-﻿<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MauiApp1"
+             xmlns:converters="clr-namespace:MauiApp1.Converters"
              x:Class="MauiApp1.App">
     <Application.Resources>
         <ResourceDictionary>
+            <converters:TreatmentSelectionConverter x:Key="TreatmentSelectionConverter" />
+            
             <!-- Colors -->
             <Color x:Key="PrimaryColor">#3498db</Color> <!-- Light Blue -->
             <Color x:Key="SecondaryColor">#2ecc71</Color> <!-- Green -->
@@ -52,4 +56,3 @@
         </ResourceDictionary>
     </Application.Resources>
 </Application>
-
