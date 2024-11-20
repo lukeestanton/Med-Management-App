@@ -1,44 +1,77 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiApp1.ViewModels"
              x:Class="MauiApp1.Views.PatientManagement"
-             Title="PatientManagement"
+             Title="Patient Management"
              NavigatedTo="PatientManagement_NavigatedTo">
 
-    <VerticalStackLayout>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="12*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Entry Grid.Column="0" Text="{Binding Query}"/>
-            <Button Grid.Column="1" Text="Search" Clicked="RefreshClicked"/>
-        </Grid>
+    <ContentPage.BindingContext>
+        <viewModels:PatientManagementViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <!-- Search Bar -->
+        <SearchBar Placeholder="Search Patients"
+                   Text="{Binding Query}"
+                   SearchCommand="{Binding SearchCommand}" />
+
+        <!-- Patients List -->
         <ListView
+            x:Name="PatientsListView"
             ItemsSource="{Binding Patients}"
-            SelectedItem="{Binding SelectedPatient}"
+            SelectedItem="{Binding SelectedPatient, Mode=TwoWay}"
+            HasUnevenRows="True"
             SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
+                        <Grid Padding="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
                             </Grid.ColumnDefinitions>
-                            <Label FontAttributes="Bold" Grid.Column="0" Text="{Binding ID}"/>
-                            <Label Grid.Column="1" Text="{Binding Name}"/>
-                            <Button Grid.Column="3" Text="Delete" Command="{Binding DeleteCommand}" Clicked="RefreshClicked"/>                            
+
+                            <!-- ID -->
+                            <Label Grid.Column="0" Text="{Binding ID}" />
+
+                            <!-- Name -->
+                            <Label Grid.Column="1" Text="{Binding Name}" />
+
+                            <!-- Race -->
+                            <Label Grid.Column="2" Text="{Binding Race}" />
+
+                            <!-- Gender -->
+                            <Label Grid.Column="3" Text="{Binding Gender}" />
+
+                            <!-- Insurance Plan -->
+                            <Label Grid.Column="4" Text="{Binding InsurancePlan}" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView> 
-        
-        <Button Text="Add" Clicked="AddClicked"/>
-        <Button Text="Edit" Clicked="EditClicked"/>
-        <Button Text="Cancel" Clicked="CancelClicked"/>
+        </ListView>
+
+        <!-- Action Buttons -->
+        <HorizontalStackLayout Spacing="20" Padding="0,20,0,0">
+            <Button Text="New Patient"
+                    Command="{Binding AddCommand}"
+                    />
+            <Button Text="Edit Patient"
+                    Command="{Binding EditCommand}"
+                    IsEnabled="{Binding IsPatientSelected}"
+                    />
+            <Button Text="Delete Patient" 
+                    Command="{Binding DeleteCommand}" 
+                    IsEnabled="{Binding IsPatientSelected}" 
+                    />
+            <Button Text="Cancel"
+                    Command="{Binding CancelCommand}"
+                    />
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

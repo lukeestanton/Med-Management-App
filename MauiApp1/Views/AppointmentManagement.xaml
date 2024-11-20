@@ -6,7 +6,7 @@
              Title="Appointment Management"
              NavigatedTo="AppointmentManagement_NavigatedTo">
 
-    <VerticalStackLayout Padding="10" Spacing="10">
+    <VerticalStackLayout Padding="20" Spacing="10">
 
         <!-- Search Bar -->
         <SearchBar Placeholder="Search Appointments"
@@ -53,7 +53,7 @@
         </ListView>
 
         <!-- Action Buttons -->
-        <HorizontalStackLayout Spacing="20" Padding="0,10,0,0">
+        <HorizontalStackLayout Spacing="20" Padding="0,20,0,0">
             <Button Text="Schedule Appointment" Command="{Binding AddCommand}" />
             <Button Text="Edit Appointment" Command="{Binding EditCommand}" IsEnabled="{Binding IsAppointmentSelected}" />
             <Button Text="Delete Appointment" Command="{Binding DeleteCommand}" IsEnabled="{Binding IsAppointmentSelected}" />

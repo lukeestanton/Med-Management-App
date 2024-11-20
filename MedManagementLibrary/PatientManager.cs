@@ -68,6 +68,11 @@ namespace MedManagementLibrary
             return _patients;
         }
 
+        public Patient? GetPatientById(int id)
+        {
+            return _patients.FirstOrDefault(p => p.ID == id);
+        }
+
         public void AddPatient(Patient patient)
         {
             bool isAdd = false;
@@ -93,6 +98,7 @@ namespace MedManagementLibrary
                     existingPatient.Gender = patient.Gender;
                     existingPatient.Diagnoses = patient.Diagnoses;
                     existingPatient.Prescriptions = patient.Prescriptions;
+                    existingPatient.InsurancePlan = patient.InsurancePlan;
                 }
             }
         }
