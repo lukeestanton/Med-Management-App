@@ -12,6 +12,10 @@
 		<data>
 		8iJ9gm+pXuXdOyjBr2sgAZ/28LY=
 		</data>
+		<key>Resources/MauiInfo.plist</key>
+		<data>
+		iEtuUGCV6JM3gxS/pO33swhmpp8=
+		</data>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>
 		<data>
 		oowkf1sL6T19nanXUObgmuayWqM=
@@ -47,28 +51,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			A/HRhu9mEKhlsxSeBZujbB8f27GmM8mY58zQfzWxNCk=
+			xQFqQYwleSHS71YE8CkOpV0Anz0Yxnc2ujOkzmHPS4Y=
 			</data>
 		</dict>
 		<key>MonoBundle/MauiApp1.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tquCNQphU7fQL/1idMPfmd3ypPYCP3oBMh12GlyEGMQ=
+			gRYbraju37tZ02gcbQfrZ/yLolidJ2WzQiX9kQYdoqo=
 			</data>
 		</dict>
 		<key>MonoBundle/MedManagementLibrary.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4hSlO1UXiwnxoUBK25VwZcd4Fw86EtEgpLko7aP0hVo=
+			uxnto0632VcUwMdH/5TVVGPInxE97KRIEyxw51kZSiE=
 			</data>
 		</dict>
 		<key>MonoBundle/MedManagementLibrary.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KsJg2N0Fvw7G1tr+vULXUYQfaKlDgQ5148yj4m+y4XI=
+			9Ll5/2c5ztUg4VgY30ClpdvRieZnBqrHRvgzJhmSVQI=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.CSharp.dll</key>
@@ -1644,6 +1648,13 @@
 			<key>hash2</key>
 			<data>
 			X7EK60gY1FveyT5BLcshcZ7Sb242v2vnJPF81qWocLI=
+			</data>
+		</dict>
+		<key>Resources/MauiInfo.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			tx0KXqEC+DvcCGyogQTEQWHcCWJYYqH24NtPwhpQEjo=
 			</data>
 		</dict>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>
