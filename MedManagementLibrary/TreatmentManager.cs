@@ -97,6 +97,11 @@ namespace MedManagementLibrary
             return _treatments;
         }
 
+        public Treatment? GetTreatmentById(int id)
+        {
+            return _treatments.FirstOrDefault(t => t.ID == id);
+        }
+
         public void AddTreatment(Treatment treatment)
         {
             bool isAdd = false;

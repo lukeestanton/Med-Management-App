@@ -1,47 +1,87 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="MauiApp1.Views.TreatmentManagement"
-    Title="TreatmentManagement"
-    NavigatedTo="TreatmentManagement_NavigatedTo">
-    <VerticalStackLayout>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="12*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Entry Grid.Column="0" Text="{Binding Query}"/>
-            <Button Grid.Column="1" Text="Search" Clicked="RefreshClicked"/>
-        </Grid>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiApp1.ViewModels"
+             x:Class="MauiApp1.Views.TreatmentManagement"
+             Title="Treatment Management"
+             NavigatedTo="TreatmentManagement_NavigatedTo">
+
+    <ContentPage.BindingContext>
+        <viewModels:TreatmentManagementViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <!-- Search Bar -->
+        <SearchBar Placeholder="Search Treatments"
+                   Text="{Binding Query}"
+                   SearchCommand="{Binding SearchCommand}" />
+
+        <!-- Treatment List -->
         <ListView
+            x:Name="TreatmentsListView"
             ItemsSource="{Binding Treatments}"
-            SelectedItem="{Binding SelectedTreatment}"
+            SelectedItem="{Binding SelectedTreatment, Mode=TwoWay}"
+            HasUnevenRows="True"
             SelectionMode="Single">
+
+            <!-- ListView Header -->
+            <ListView.Header>
+                <Grid Padding="10" BackgroundColor="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="ID" FontAttributes="Bold" />
+                    <Label Grid.Column="1" Text="Name" FontAttributes="Bold" />
+                    <Label Grid.Column="2" Text="Price" FontAttributes="Bold" />
+                </Grid>
+            </ListView.Header>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
+                        <Grid Padding="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
                             </Grid.ColumnDefinitions>
-                            <Label FontAttributes="Bold" Grid.Column="0" Text="{Binding ID}"/>
-                            <Label Grid.Column="1" Text="{Binding Name}"/>
-                            <Label Grid.Column="2" Text="{Binding Price, StringFormat='{}{0:C}'}"/>
-                            <Button Grid.Column="3" Text="Delete" Command="{Binding DeleteCommand}" Clicked="RefreshClicked"/>                            
+
+                            <!-- ID -->
+                            <Label Grid.Column="0" Text="{Binding ID}" />
+
+                            <!-- Name -->
+                            <Label Grid.Column="1" Text="{Binding Name}" />
+
+                            <!-- Price -->
+                            <Label Grid.Column="2" Text="{Binding Price, StringFormat='{}{0:C}' }" />
+
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView> 
-        
-        <Button Text="Add" Clicked="AddClicked"/>
-        <Button Text="Edit" Clicked="EditClicked"/>
-        <Button Text="Cancel" Clicked="CancelClicked"/>
+        </ListView>
+
+        <!-- Action Buttons -->
+        <HorizontalStackLayout Spacing="20" Padding="0,20,0,0">
+            <Button Text="New Treatment"
+                    Command="{Binding AddCommand}"
+                    />
+            <Button Text="Edit Treatment"
+                    Command="{Binding EditCommand}"
+                    IsEnabled="{Binding IsTreatmentSelected}"
+                    />
+            <Button Text="Delete Treatment" 
+                    Command="{Binding DeleteCommand}" 
+                    IsEnabled="{Binding IsTreatmentSelected}" 
+                    />
+            <Button Text="Cancel"
+                    Command="{Binding CancelCommand}"
+                    />
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
-
 

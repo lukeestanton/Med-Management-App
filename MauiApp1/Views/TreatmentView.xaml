@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiApp1.ViewModels"
              x:Class="MauiApp1.Views.TreatmentView"
-             Title="Treatment Details"
+             Title="TreatmentView"
              NavigatedTo="TreatmentView_NavigatedTo">
-    <StackLayout Padding="20">
-        <Label Text="Treatment Name" />
-        <Entry Text="{Binding Name}" />
 
-        <Label Text="Price" />
-        <Entry Text="{Binding Price}" Keyboard="Numeric" />
+    <ContentPage.BindingContext>
+        <viewModels:TreatmentViewModel />
+    </ContentPage.BindingContext>
 
-        <Button Text="Ok" Clicked="AddClicked" />
-        <Button Text="Cancel" Clicked="CancelClicked" />
-    </StackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Treatment Name -->
+            <Label Text="Treatment Name" FontAttributes="Bold" />
+            <Entry Text="{Binding Name}" Placeholder="Enter treatment name" />
+
+            <!-- Treatment Price -->
+            <Label Text="Treatment Price" FontAttributes="Bold" />
+            <Entry Text="{Binding Price}" Placeholder="Enter treatment price" />
+
+
+            <HorizontalStackLayout Spacing="20" Padding="0,20,0,0">
+                <Button Text="Ok" 
+                        Command="{Binding AddOrUpdateCommand}" />
+
+                <Button Text="Cancel" 
+                        Command="{Binding CancelCommand}" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

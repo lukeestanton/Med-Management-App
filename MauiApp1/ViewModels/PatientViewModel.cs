@@ -182,12 +182,12 @@ public class PatientViewModel : INotifyPropertyChanged
     }
 
     public void AddOrUpdate()
+    {
+        if (model != null)
         {
-            if (model != null)
-            {
-                PatientManager.Current.AddPatient(model);
-            }
+            PatientManager.Current.AddPatient(model);
         }
+    }
 
     public Patient GetPatientModel()
     {

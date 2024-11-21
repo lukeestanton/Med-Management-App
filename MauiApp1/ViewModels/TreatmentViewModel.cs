@@ -7,16 +7,16 @@ namespace MauiApp1.ViewModels
 {
     public class TreatmentViewModel : INotifyPropertyChanged
     {
-        private Treatment model;
+        public Treatment? model { get; set; }
 
-        public int ID => model.ID;
+        public int ID => model?.ID ?? 0;
 
         public string Name
         {
-            get => model.Name;
+            get => model?.Name ?? string.Empty;
             set
             {
-                if (model.Name != value)
+                if (model != null && model.Name != value)
                 {
                     model.Name = value;
                     NotifyPropertyChanged(nameof(Name));
@@ -26,10 +26,10 @@ namespace MauiApp1.ViewModels
 
         public decimal Price
         {
-            get => model.Price;
+            get => model?.Price ?? 0;
             set
             {
-                if (model.Price != value)
+                if (model != null && model.Price != value)
                 {
                     model.Price = value;
                     NotifyPropertyChanged(nameof(Price));
@@ -37,41 +37,57 @@ namespace MauiApp1.ViewModels
             }
         }
 
+        public TreatmentViewModel(Treatment treatment)
+        {
+            model = treatment;
+            SetupCommands();
+        }
+
+        public ICommand AddOrUpdateCommand { get; set; }
+        public ICommand CancelCommand { get; set; }
+
         public TreatmentViewModel()
         {
             model = new Treatment();
-            SetupCommands();
+            AddOrUpdateCommand = new Command(DoAddOrUpdate);
+            CancelCommand = new Command(DoCancel);
         }
 
-        public TreatmentViewModel(Treatment? _model)
+        private void SetupCommands()
         {
-            model = _model ?? new Treatment();
-            SetupCommands();
+            AddOrUpdateCommand = new Command(DoAddOrUpdate);
+            CancelCommand = new Command(DoCancel);
         }
 
-        public ICommand? DeleteCommand { get; set; }
-        public ICommand? EditCommand { get; set; }
-
-        public void SetupCommands() {
-            DeleteCommand = new Command(DoDelete);
-            EditCommand = new Command((t) => DoEdit(t as TreatmentViewModel));
-        }
-
-        private void DoDelete() {
-        if(ID > 0) {
-            TreatmentManager.Current.DeleteTreatment(ID);
-            Shell.Current.GoToAsync("//Treatments");
-        }   
-        }
-
-        private void DoEdit(TreatmentViewModel? tvm) 
+        private async void DoAddOrUpdate()
         {
-            if (tvm == null)
+            try
+            {
+                // Validation
+                if (string.IsNullOrWhiteSpace(Name))
                 {
+                    await Application.Current.MainPage.DisplayAlert("Validation Error", "Please enter a treatment name.", "OK");
                     return;
                 }
-            var selectedTreatmentId = tvm?.ID ?? 0;
-            Shell.Current.GoToAsync($"//TreatmentDetails?treatmentId={selectedTreatmentId}");
+
+                // Add or update treatment
+                TreatmentManager.Current.AddTreatment(model);
+
+                await Application.Current.MainPage.DisplayAlert("Success", "Treatment saved successfully.", "OK");
+
+                // Navigate back to Patient Management
+                await Shell.Current.GoToAsync("//Treatments");
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
+            }
+        }
+
+        private async void DoCancel()
+        {
+            // Navigate back to Treatment Management without saving
+            await Shell.Current.GoToAsync("//Treatments");
         }
 
         public void LoadTreatment(int treatmentId)
@@ -98,12 +114,20 @@ namespace MauiApp1.ViewModels
             NotifyPropertyChanged(nameof(Price));
         }
 
-        public Treatment GetTreatmentModel()
+        public void AddOrUpdate()
         {
-            return model;
+            if (model != null)
+            {
+                TreatmentManager.Current.AddTreatment(model);
+            }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public Treatment GetTreatmentModel()
+        {
+            return model ?? new Treatment();
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
