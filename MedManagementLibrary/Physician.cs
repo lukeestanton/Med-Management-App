@@ -15,7 +15,6 @@ namespace MedManagementLibrary
             GraduationDate = DateTime.MinValue;
             Specializations = new List<string>();
         }
-
     }
 }
 

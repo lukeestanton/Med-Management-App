@@ -24,6 +24,26 @@
             SelectedItem="{Binding SelectedPatient, Mode=TwoWay}"
             HasUnevenRows="True"
             SelectionMode="Single">
+
+            <!-- ListView Header -->
+            <ListView.Header>
+                <Grid Padding="10" BackgroundColor="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="ID" FontAttributes="Bold" />
+                    <Label Grid.Column="1" Text="Name" FontAttributes="Bold" />
+                    <Label Grid.Column="2" Text="Race" FontAttributes="Bold" />
+                    <Label Grid.Column="3" Text="Gender" FontAttributes="Bold" />
+                    <Label Grid.Column="4" Text="Insurance Plan" FontAttributes="Bold" />
+                </Grid>
+            </ListView.Header>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

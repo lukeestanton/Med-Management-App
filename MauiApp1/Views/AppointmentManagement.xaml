@@ -20,6 +20,26 @@
             SelectedItem="{Binding SelectedAppointment, Mode=TwoWay}"
             HasUnevenRows="True"
             SelectionMode="Single">
+
+            <!-- ListView Header -->
+            <ListView.Header>
+                <Grid Padding="10" BackgroundColor="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="Patient Name" FontAttributes="Bold" />
+                    <Label Grid.Column="1" Text="Start Time" FontAttributes="Bold" />
+                    <Label Grid.Column="2" Text="End Time" FontAttributes="Bold" />
+                    <Label Grid.Column="3" Text="Price" FontAttributes="Bold" />
+                    <Label Grid.Column="4" Text="Price After Insurance" FontAttributes="Bold" />
+                </Grid>
+            </ListView.Header>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -42,10 +62,10 @@
                             <Label Grid.Column="2" Text="{Binding EndTime}" />
 
                             <!-- Total Price -->
-                            <Label Grid.Column="3" Text="{Binding Price, StringFormat='{}{0:C}'}" HorizontalTextAlignment="End" />
+                            <Label Grid.Column="3" Text="{Binding Price, StringFormat='{}{0:C}'}" />
 
                             <!-- Insurance Price -->
-                            <Label Grid.Column="4" Text="{Binding InsurancePrice, StringFormat='{}{0:C}'}" HorizontalTextAlignment="End" />
+                            <Label Grid.Column="4" Text="{Binding InsurancePrice, StringFormat='{}{0:C}'}" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
