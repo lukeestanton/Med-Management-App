@@ -72,6 +72,48 @@ namespace MauiApp1.ViewModels
             }
         }
 
+        public string PhysicianName
+        {
+            get
+            {
+                if (Model != null && Model.PhysicianID > 0)
+                {
+                    if (Model.Physician == null)
+                    {
+                        Model.Physician = PhysicianManager.Current.GetAllPhysicians().FirstOrDefault(p => p.ID == Model.PhysicianID);
+                    }
+                }
+
+                return Model?.Physician?.Name ?? string.Empty;
+            }
+        }
+
+        public Physician? SelectedPhysician
+        {
+            get
+            {
+                return Model?.Physician;
+            }
+            set
+            {
+                var selectedPhysician = value;
+                if (Model != null)
+                {
+                    Model.Physician = selectedPhysician;
+                    Model.PhysicianID = selectedPhysician?.ID ?? 0;
+                    NotifyPropertyChanged(nameof(SelectedPhysician));
+                }
+            }
+        }
+
+        public ObservableCollection<Physician> Physicians
+        {
+            get
+            {
+                return new ObservableCollection<Physician>(PhysicianManager.Current.GetAllPhysicians());
+            }
+        }
+
         public DateTime MinStartDate
         {
             get
@@ -246,15 +288,15 @@ namespace MauiApp1.ViewModels
             try
             {
                 // Validation
-                if (string.IsNullOrWhiteSpace(Name))
-                {
-                    await Application.Current.MainPage.DisplayAlert("Validation Error", "Please enter an appointment name.", "OK");
-                    return;
-                }
-
                 if (SelectedPatient == null)
                 {
                     await Application.Current.MainPage.DisplayAlert("Validation Error", "Please select a patient.", "OK");
+                    return;
+                }
+
+                if (SelectedPhysician == null)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Validation Error", "Please select a physician.", "OK");
                     return;
                 }
 
@@ -268,7 +310,7 @@ namespace MauiApp1.ViewModels
                 Model.TreatmentIDs = SelectedTreatments.Select(t => t.ID).ToList();
 
                 // Optionally, set appointment name based on patient and treatments
-                Model.Name = $"{SelectedPatient.Name} - {string.Join(", ", SelectedTreatments.Select(t => t.Name))}";
+                Model.Name = $"{SelectedPatient.Name} with Dr. {SelectedPhysician.Name} - {string.Join(", ", SelectedTreatments.Select(t => t.Name))}";
 
                 // Add or update appointment
                 AppointmentManager.Current.AddAppointment(Model);
@@ -310,6 +352,7 @@ namespace MauiApp1.ViewModels
                 {
                     Model = selectedAppointment;
                     SelectedPatient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == Model.PatientID);
+                    SelectedPhysician = PhysicianManager.Current.GetAllPhysicians().FirstOrDefault(p => p.ID == Model.PhysicianID);
                     LoadSelectedTreatments();
                 }
             }
@@ -317,6 +360,7 @@ namespace MauiApp1.ViewModels
             {
                 Model = new Appointment();
                 SelectedPatient = null;
+                SelectedPhysician = null;
                 SelectedTreatments.Clear();
             }
 
@@ -340,6 +384,8 @@ namespace MauiApp1.ViewModels
             NotifyPropertyChanged(nameof(Name));
             NotifyPropertyChanged(nameof(PatientName));
             NotifyPropertyChanged(nameof(SelectedPatient));
+            NotifyPropertyChanged(nameof(PhysicianName));
+            NotifyPropertyChanged(nameof(SelectedPhysician));
             NotifyPropertyChanged(nameof(StartDate));
             NotifyPropertyChanged(nameof(StartTime));
             NotifyPropertyChanged(nameof(StartTimeDisplay));

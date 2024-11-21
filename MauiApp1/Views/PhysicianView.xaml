@@ -21,7 +21,22 @@
             <Label Text="Graduation Date" FontAttributes="Bold" />
             <DatePicker Date="{Binding GraduationDate}" />
 
-             <!-- Action Buttons -->
+            <!-- Select Specializations -->
+            <Label Text="Select Specializations" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding AvailableSpecializations}"
+                            SelectionMode="Multiple"
+                            SelectedItems="{Binding SelectedSpecializations, Mode=TwoWay}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="5">
+                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                            <Label Text="{Binding Name}" VerticalOptions="Center" Margin="10,0,0,0" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Action Buttons -->
             <HorizontalStackLayout Spacing="20" Padding="0,20,0,0">
                 <Button Text="Ok" 
                         Command="{Binding AddOrUpdateCommand}" />

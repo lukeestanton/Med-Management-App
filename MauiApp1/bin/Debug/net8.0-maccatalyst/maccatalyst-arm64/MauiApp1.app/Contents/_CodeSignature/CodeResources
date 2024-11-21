@@ -44,6 +44,10 @@
 		<data>
 		Zt+VE+uuJQUze/d9zd3r+NdrtDw=
 		</data>
+		<key>Resources/medicalcarelogo.png</key>
+		<data>
+		hRLTEjtIyHNhgsiGCgSWqJqmNik=
+		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
@@ -51,28 +55,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			KtILw0357EnELj+veGyoyDYDciWxzJw74Ar4GYF0Eu0=
+			xjR09l0UEeegZV2R/E4nrdP4ig8RpyywK021RZa3gDo=
 			</data>
 		</dict>
 		<key>MonoBundle/MauiApp1.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			nRVzI1VmIweT7ZA90LYK2+JbESXoO+TI56wq+0vlN0I=
+			VYkALJXjGQQhfx+h2ZMbk9J0B8TGCUXCApYf+x+yAJM=
 			</data>
 		</dict>
 		<key>MonoBundle/MedManagementLibrary.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Vdnfd9vhaysjC8/KfUm6rkyEXVsxu/CcIsfHeBSEJHA=
+			zeAkDIb/HKW4ZXr0y1S779dzH2Q/XTArk3QhGLRjHak=
 			</data>
 		</dict>
 		<key>MonoBundle/MedManagementLibrary.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			iX8aDQ4kPM1HwFGdey2X3Ss5ora5J8q3dxgt7WvEdKw=
+			KK7S2q2iWbfaY0QnmbEX/4JZCJ0XVN/DDka0+Fhr9iI=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.CSharp.dll</key>
@@ -1704,6 +1708,13 @@
 			<key>hash2</key>
 			<data>
 			Up4t4C3+oRoTqJRc+zJSfhbhdg8R3zWbHkE+G9N4B9U=
+			</data>
+		</dict>
+		<key>Resources/medicalcarelogo.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			TFlZeUrMeidxkK4WQNJhtSL1eZGyKX/bM88PugrEwng=
 			</data>
 		</dict>
 	</dict>

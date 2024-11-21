@@ -11,54 +11,96 @@ namespace MauiApp1.ViewModels;
 
 public class PhysicianViewModel : INotifyPropertyChanged
 {
-    public Physician? model { get; set; }
+    public Physician? Model { get; set; }
 
-    public int ID => model?.ID ?? 0;
+    public int ID => Model?.ID ?? 0;
 
     public string Name
     {
-        get => model?.Name ?? string.Empty;
+        get => Model?.Name ?? string.Empty;
         set
         {
-            if (model != null && model.Name != value)
+            if (Model != null && Model.Name != value)
             {
-                model.Name = value;
+                Model.Name = value;
                 NotifyPropertyChanged(nameof(Name));
             }
         }
     }
 
-    
-
     public DateTime GraduationDate
     {
         get
         {
-            return model?.GraduationDate.Date ?? DateTime.Today;
+            return Model?.GraduationDate.Date ?? DateTime.Today;
         }
         set
         {
-            if (model != null)
+            if (Model != null)
             {
                 NotifyPropertyChanged(nameof(GraduationDate));
             }
         }
     }
 
-    public PhysicianViewModel(Physician physician)
-    {
-        model = physician; 
-        SetupCommands();
-    }
+    public ObservableCollection<Specialization> AvailableSpecializations { get; set; }
+    public ObservableCollection<Specialization> SelectedSpecializations { get; set; } = new ObservableCollection<Specialization>();
+
 
     public ICommand AddOrUpdateCommand { get; set; }
     public ICommand CancelCommand { get; set; }
 
     public PhysicianViewModel()
     {
-        model = new Physician();
+        Model = new Physician();
+        AvailableSpecializations = new ObservableCollection<Specialization>(SpecializationManager.Current.GetAllSpecializations());
+        SelectedSpecializations = new ObservableCollection<Specialization>();
+        foreach(var specialization in AvailableSpecializations)
+        {
+            specialization.PropertyChanged += Specialization_PropertyChanged;
+        }
         AddOrUpdateCommand = new Command(DoAddOrUpdate);
         CancelCommand = new Command(DoCancel);
+    }
+
+    private void Specialization_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        if(e.PropertyName == nameof(Specialization.IsSelected))
+        {
+            var specialization = sender as Specialization;
+            if(specialization == null)
+                return;
+
+            if(specialization.IsSelected)
+            {
+                if(!SelectedSpecializations.Contains(specialization))
+                    SelectedSpecializations.Add(specialization);
+            }
+            else
+            {
+                if(SelectedSpecializations.Contains(specialization))
+                    SelectedSpecializations.Remove(specialization);
+            }
+
+            NotifyPropertyChanged(nameof(Name));
+        }
+    }
+
+    public PhysicianViewModel(Physician physician)
+    {
+        Model = physician;
+        InitializeData();
+        LoadSelectedSpecializations();
+        SetupCommands();
+    }
+
+    private void InitializeData()
+    {
+        // Initialize Available Specializations
+        AvailableSpecializations = new ObservableCollection<Specialization>(SpecializationManager.Current.GetAllSpecializations());
+
+        // Subscribe to changes in SelectedSpecializations
+        SelectedSpecializations.CollectionChanged += SelectedSpecializations_CollectionChanged;
     }
 
     private void SetupCommands()
@@ -78,8 +120,16 @@ public class PhysicianViewModel : INotifyPropertyChanged
                 return;
             }
 
+            if (!SelectedSpecializations.Any())
+            {
+                await Application.Current.MainPage.DisplayAlert("Validation Error", "Please select at least one specialization.", "OK");
+                return;
+            }
+
+            Model.SpecializationIDs = SelectedSpecializations.Select(s => s.ID).ToList();
+
             // Add or update physician
-            PhysicianManager.Current.AddPhysician(model);
+            PhysicianManager.Current.AddPhysician(Model);
 
             await Application.Current.MainPage.DisplayAlert("Success", "Physician saved successfully.", "OK");
 
@@ -98,6 +148,15 @@ public class PhysicianViewModel : INotifyPropertyChanged
         await Shell.Current.GoToAsync("//PhysicianManagement");
     }
 
+    private void SelectedSpecializations_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    {
+        // Update the model's SpecializationIDs
+        if (Model != null)
+        {
+            Model.SpecializationIDs = SelectedSpecializations.Select(s => s.ID).ToList();
+        }
+    }
+
 
     public void LoadPhysician(int physicianId)
     {
@@ -106,14 +165,28 @@ public class PhysicianViewModel : INotifyPropertyChanged
             var selectedPhysician = PhysicianManager.Current.GetAllPhysicians().FirstOrDefault(p => p.ID == physicianId);
             if (selectedPhysician != null)
             {
-                model = selectedPhysician;
+                Model = selectedPhysician;
+                LoadSelectedSpecializations();
             }
         }
         else
         {
-            model = new Physician(); 
+            Model = new Physician(); 
+            SelectedSpecializations.Clear();
         }
+
         NotifyAllPropertiesChanged(); 
+    }
+
+    private void LoadSelectedSpecializations()
+    {
+        SelectedSpecializations.CollectionChanged -= SelectedSpecializations_CollectionChanged;
+        SelectedSpecializations.Clear();
+        foreach (var specialization in AvailableSpecializations.Where(s => Model?.SpecializationIDs.Contains(s.ID) ?? false))
+        {
+            SelectedSpecializations.Add(specialization);
+        }
+        SelectedSpecializations.CollectionChanged += SelectedSpecializations_CollectionChanged;
     }
 
     private void NotifyAllPropertiesChanged()
@@ -125,15 +198,15 @@ public class PhysicianViewModel : INotifyPropertyChanged
 
     public void AddOrUpdate()
         {
-            if (model != null)
+            if (Model != null)
             {
-                PhysicianManager.Current.AddPhysician(model);
+                PhysicianManager.Current.AddPhysician(Model);
             }
         }
 
     public Physician GetPhysicianModel()
     {
-        return model ?? new Physician();
+        return Model ?? new Physician();
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
