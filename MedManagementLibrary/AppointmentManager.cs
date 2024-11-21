@@ -32,7 +32,7 @@ namespace MedManagementLibrary
                 new Appointment 
                 { 
                     ID = 1, 
-                    Name = "John Doe - Physical Therapy",
+                    Name = "Joker - Meditation",
                     StartTime = DateTime.Now.AddDays(1).AddHours(9), 
                     EndTime = DateTime.Now.AddDays(1).AddHours(10), 
                     PatientID = 1, 
@@ -42,7 +42,7 @@ namespace MedManagementLibrary
                 new Appointment 
                 { 
                     ID = 2, 
-                    Name = "Jane Smith - Acupuncture and Massage Therapy",
+                    Name = "Harley Quinn - Physical Therapy and Bone Repair",
                     StartTime = DateTime.Now.AddDays(2).AddHours(11), 
                     EndTime = DateTime.Now.AddDays(2).AddHours(12), 
                     PatientID = 2, 

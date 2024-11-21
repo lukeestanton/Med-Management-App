@@ -1,39 +1,93 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiApp1.ViewModels"
              x:Class="MauiApp1.Views.PhysicianManagement"
              Title="Physician Management"
              NavigatedTo="PhysicianManagement_NavigatedTo">
 
-    <VerticalStackLayout>
+    <ContentPage.BindingContext>
+        <viewModels:PhysicianManagementViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <!-- Search Bar -->
+        <SearchBar Placeholder="Search Physicians"
+                   Text="{Binding Query}"
+                   SearchCommand="{Binding SearchCommand}" />
+
+        <!-- Physicians List -->
         <ListView
+            x:Name="PhysiciansListView"
             ItemsSource="{Binding Physicians}"
-            SelectedItem="{Binding SelectedPhysician}"
+            SelectedItem="{Binding SelectedPhysician, Mode=TwoWay}"
+            HasUnevenRows="True"
             SelectionMode="Single">
+
+            <!-- ListView Header -->
+            <ListView.Header>
+                <Grid Padding="10" BackgroundColor="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="ID" FontAttributes="Bold" />
+                    <Label Grid.Column="1" Text="Name" FontAttributes="Bold" />
+                    <Label Grid.Column="2" Text="Graduation Date" FontAttributes="Bold" />
+                    <Label Grid.Column="3" Text="Specializations" FontAttributes="Bold" />
+                </Grid>
+            </ListView.Header>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
+                        <Grid Padding="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="3*" />
                             </Grid.ColumnDefinitions>
-                            <Label FontAttributes="Bold" Grid.Column="0" Text="{Binding ID}"/>
-                            <Label Grid.Column="1" Text="{Binding Name}"/>
-                            <Button Grid.Column="2" Text="Edit" />
-                            <Button Grid.Column="3" Text="Delete" />                            
+
+                            <!-- ID -->
+                            <Label Grid.Column="0" Text="{Binding ID}" />
+
+                            <!-- Name -->
+                            <Label Grid.Column="1" Text="{Binding Name}" />
+
+                            <!-- Graduation Date -->
+                            <Label Grid.Column="2" Text="{Binding GraduationDate}" />
+
+                            <!-- Specializations -->
+                            <Label Grid.Column="3" Text="{Binding Specializations}" />
+
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        <Button Text="Add" Clicked="AddClicked"/>
-        <Button Text="Edit" Clicked="EditClicked"/>
-        <Button Text="Delete" Clicked="DeleteClicked"/>
-        <Button Text="Cancel" Clicked="CancelClicked"/>
+
+        <!-- Action Buttons -->
+        <HorizontalStackLayout Spacing="20" Padding="0,20,0,0">
+            <Button Text="New Physician"
+                    Command="{Binding AddCommand}"
+                    />
+            <Button Text="Edit Physician"
+                    Command="{Binding EditCommand}"
+                    IsEnabled="{Binding IsPhysicianSelected}"
+                    />
+            <Button Text="Delete Physician" 
+                    Command="{Binding DeleteCommand}" 
+                    IsEnabled="{Binding IsPhysicianSelected}" 
+                    />
+            <Button Text="Cancel"
+                    Command="{Binding CancelCommand}"
+                    />
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
 

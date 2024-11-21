@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MauiApp1.ViewModels"
              x:Class="MauiApp1.Views.PhysicianView"
              Title="PhysicianView"
              NavigatedTo="PhysicianView_NavigatedTo">
-    <VerticalStackLayout>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="10*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Name:"/>
-            <Entry Grid.Column="1" Text="{Binding Name}"/>
-        </Grid>
-        <Button Text="Ok" Clicked="AddClicked" />
-        <Button Text="Cancel" Clicked="CancelClicked" />
-    </VerticalStackLayout>
+
+    <ContentPage.BindingContext>
+        <viewModels:PhysicianViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Physician Name -->
+            <Label Text="Physician Name" FontAttributes="Bold" />
+            <Entry Text="{Binding Name}" Placeholder="Enter physician name" />
+
+            <!-- Physician Graduation Date -->
+            <Label Text="Graduation Date" FontAttributes="Bold" />
+            <DatePicker Date="{Binding GraduationDate}" />
+
+             <!-- Action Buttons -->
+            <HorizontalStackLayout Spacing="20" Padding="0,20,0,0">
+                <Button Text="Ok" 
+                        Command="{Binding AddOrUpdateCommand}" />
+
+                <Button Text="Cancel" 
+                        Command="{Binding CancelCommand}" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
-
-
 

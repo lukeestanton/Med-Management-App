@@ -1,42 +1,21 @@
 using System.ComponentModel;
 using MauiApp1.ViewModels;
+using MedManagementLibrary;
 
 namespace MauiApp1.Views
 {
     public partial class PhysicianManagement : ContentPage, INotifyPropertyChanged
     {
+        public PhysicianManagementViewModel ViewModel => BindingContext as PhysicianManagementViewModel;
         public PhysicianManagement()
         {
             InitializeComponent();
             BindingContext = new PhysicianManagementViewModel();
         }
 
-        private void CancelClicked(object sender, EventArgs e)
-        {
-            Shell.Current.GoToAsync("//MainPage");
-        }
-
-        private void AddClicked(object sender, EventArgs e)
-        {
-            Shell.Current.GoToAsync("//PhysicianDetails?physicianId=0");
-        }
-
-        private void EditClicked(object sender, EventArgs e)
-        {
-            var selectedPhysicianId = (BindingContext as PhysicianManagementViewModel)?.SelectedPhysician?.ID ?? 0;
-            Shell.Current.GoToAsync($"//PhysicianDetails?physicianId={selectedPhysicianId}");
-        }
-
-        private void DeleteClicked(object sender, EventArgs e)
-        {
-            (BindingContext as PhysicianManagementViewModel)?.Delete();
-        }
-
         private void PhysicianManagement_NavigatedTo(object sender, EventArgs e)
         {
-            (BindingContext as PhysicianManagementViewModel)?.Refresh();
+            ViewModel.Refresh();
         }
     }
 }
-
-

@@ -6,23 +6,70 @@ namespace MedManagementLibrary
 {
     public class PhysicianManager
     {
-        private static PhysicianManager? _current;
-        public static PhysicianManager Current => _current ??= new PhysicianManager();
+        private static readonly object _lock = new object();
+        private static PhysicianManager? _instance;
+
+        public static PhysicianManager Current
+        {
+            get
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new PhysicianManager();
+                    }
+                    return _instance;
+                }
+            }
+        }
 
         private List<Physician> _physicians;
 
         private PhysicianManager()
         {
+
             _physicians = new List<Physician>
             {
-                new Physician { ID = 1, Name = "Dr. John Smith", LicenseNumber = "12345", GraduationDate = new DateTime(2010, 5, 23), Specializations = new List<string> { "Cardiology" } },
-                new Physician { ID = 2, Name = "Dr. Emily Johnson", LicenseNumber = "67890", GraduationDate = new DateTime(2015, 6, 12), Specializations = new List<string> { "Neurology" } }
+                new Physician
+                {
+                    ID = 1,
+                    Name = "Batman",
+                    GraduationDate = new DateTime(2010, 8, 9),
+                    Specializations = new List<string> { "Therapy" }
+                },
+                new Physician
+                {
+                    ID = 2,
+                    Name = "Gordon",
+                    GraduationDate = new DateTime(1993, 5, 1),
+                    Specializations = new List<string> { "Surgery", "Therapy" }
+                },
+                new Physician
+                {
+                    ID = 3,
+                    Name = "Robin",
+                    GraduationDate = new DateTime(2023, 1, 10),
+                    Specializations = new List<string> { "Meditation" }
+                },
+                new Physician
+                {
+                    ID = 4,
+                    Name = "Alfred",
+                    GraduationDate = new DateTime(1923, 3, 11),
+                    Specializations = new List<string> { "Repair", "Surgery" }
+                }
             };
         }
 
         public List<Physician> GetAllPhysicians()
         {
             return _physicians;
+        }
+
+        public Physician? GetPhysicianById(int id)
+        {
+            return _physicians.FirstOrDefault(p => p.ID == id);
         }
 
         public void AddPhysician(Physician physician)
@@ -34,11 +81,9 @@ namespace MedManagementLibrary
                 physician.ID = _physicians.Any() ? _physicians.Max(p => p.ID) + 1 : 1;
                 isAdd = true;
             }
-
             if (isAdd)
             {
                 _physicians.Add(physician);
-                Console.WriteLine($"New physician added: {physician.Name}, ID: {physician.ID}");
             }
             else
             {
@@ -46,14 +91,11 @@ namespace MedManagementLibrary
                 if (existingPhysician != null)
                 {
                     existingPhysician.Name = physician.Name;
-                    existingPhysician.LicenseNumber = physician.LicenseNumber;
                     existingPhysician.GraduationDate = physician.GraduationDate;
                     existingPhysician.Specializations = physician.Specializations;
-                    Console.WriteLine($"Patient updated: {existingPhysician.Name}, ID: {existingPhysician.ID}");
                 }
             }
         }
-
         public void DeletePhysician(int id)
         {
             var physicianToRemove = _physicians.FirstOrDefault(p => p.ID == id);
@@ -64,4 +106,5 @@ namespace MedManagementLibrary
         }
     }
 }
+
 
