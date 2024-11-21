@@ -6,12 +6,6 @@
              Title="Appointment Details"
              NavigatedTo="AppointmentView_NavigatedTo">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <!-- Add other converters here if needed -->
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.BindingContext>
         <viewModels:AppointmentViewModel />
     </ContentPage.BindingContext>

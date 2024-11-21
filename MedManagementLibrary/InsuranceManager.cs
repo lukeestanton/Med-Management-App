@@ -29,9 +29,11 @@ namespace MedManagementLibrary
         {
             _insurancePlans = new List<Insurance>
             {
-                new Insurance { ID = 1, Name = "United Health Care", CoveragePercentage = 0.8m },
-                new Insurance { ID = 2, Name = "Cigna", CoveragePercentage = 0.5m },
-                new Insurance { ID = 3, Name = "TrumpCare", CoveragePercentage = 1.0m },
+                new Insurance { ID = 1, Name = "Wayne Health", CoveragePercentage = 0.9m },
+                new Insurance { ID = 2, Name = "Gotham Care", CoveragePercentage = 0.85m },
+                new Insurance { ID = 3, Name = "Arkham Insurance", CoveragePercentage = 0.75m },
+                new Insurance { ID = 4, Name = "BatShield Insurance", CoveragePercentage = 0.8m },
+                new Insurance { ID = 5, Name = "Dark Knight Coverage", CoveragePercentage = 1.0m },
             };
         }
 

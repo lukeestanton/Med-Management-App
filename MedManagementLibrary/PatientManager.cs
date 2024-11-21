@@ -28,37 +28,119 @@ namespace MedManagementLibrary
 
         private PatientManager()
         {
+            var insuranceManager = InsuranceManager.Current;
+
             _patients = new List<Patient>
             {
                 new Patient
                 {
                     ID = 1,
-                    Name = "John Doe",
-                    Birthday = new DateTime(2000, 1, 21),
-                    Address = "123 Main St",
-                    Race = "Caucasian",
+                    Name = "The Joker",
+                    Birthday = new DateTime(1950, 4, 1),
+                    Address = "Arkham Asylum",
+                    Race = "White",
                     Gender = "Male",
-                    InsurancePlan = new Insurance { Name = "Basic Plan", CoveragePercentage = 0.7m }
+                    InsurancePlan = insuranceManager.GetAllInsurancePlans()
+                                     .FirstOrDefault(i => i.Name == "Arkham Insurance")
                 },
                 new Patient
                 {
                     ID = 2,
-                    Name = "Jane Smith",
-                    Birthday = new DateTime(2003, 5, 23),
-                    Address = "456 Oak Ave",
-                    Race = "African American",
+                    Name = "Harley Quinn",
+                    Birthday = new DateTime(1985, 6, 15),
+                    Address = "Arkham Asylum",
+                    Race = "White",
                     Gender = "Female",
-                    InsurancePlan = new Insurance { Name = "Premium Plan", CoveragePercentage = 0.9m }
+                    InsurancePlan = insuranceManager.GetAllInsurancePlans()
+                                     .FirstOrDefault(i => i.Name == "Gotham Care")
                 },
                 new Patient
                 {
                     ID = 3,
-                    Name = "Luke Staton",
-                    Birthday = new DateTime(2003, 12, 1),
-                    Address = "456 Tally Way",
+                    Name = "Two-Face",
+                    Birthday = new DateTime(1975, 8, 20),
+                    Address = "Arkham Asylum",
                     Race = "White",
                     Gender = "Male",
-                    InsurancePlan = new Insurance { Name = "TrumpCare", CoveragePercentage = 1.0m }
+                    InsurancePlan = insuranceManager.GetAllInsurancePlans()
+                                     .FirstOrDefault(i => i.Name == "BatShield Insurance")
+                },
+                new Patient
+                {
+                    ID = 4,
+                    Name = "The Riddler",
+                    Birthday = new DateTime(1968, 11, 5),
+                    Address = "Arkham Asylum",
+                    Race = "White",
+                    Gender = "Male",
+                    InsurancePlan = insuranceManager.GetAllInsurancePlans()
+                                     .FirstOrDefault(i => i.Name == "Wayne Health")
+                },
+                new Patient
+                {
+                    ID = 5,
+                    Name = "Poison Ivy",
+                    Birthday = new DateTime(1980, 3, 12),
+                    Address = "Arkham Asylum",
+                    Race = "White",
+                    Gender = "Female",
+                    InsurancePlan = insuranceManager.GetAllInsurancePlans()
+                                     .FirstOrDefault(i => i.Name == "Dark Knight Coverage")
+                },
+                new Patient
+                {
+                    ID = 6,
+                    Name = "Scarecrow",
+                    Birthday = new DateTime(1970, 10, 30),
+                    Address = "Arkham Asylum",
+                    Race = "White",
+                    Gender = "Male",
+                    InsurancePlan = insuranceManager.GetAllInsurancePlans()
+                                     .FirstOrDefault(i => i.Name == "Arkham Insurance")
+                },
+                new Patient
+                {
+                    ID = 7,
+                    Name = "Mr. Freeze",
+                    Birthday = new DateTime(1965, 2, 18),
+                    Address = "Arkham Asylum",
+                    Race = "White",
+                    Gender = "Male",
+                    InsurancePlan = insuranceManager.GetAllInsurancePlans()
+                                     .FirstOrDefault(i => i.Name == "Wayne Health")
+                },
+                new Patient
+                {
+                    ID = 8,
+                    Name = "Bane",
+                    Birthday = new DateTime(1972, 7, 14),
+                    Address = "Arkham Asylum",
+                    Race = "White",
+                    Gender = "Male",
+                    InsurancePlan = insuranceManager.GetAllInsurancePlans()
+                                     .FirstOrDefault(i => i.Name == "BatShield Insurance")
+                },
+                new Patient
+                {
+                    ID = 9,
+                    Name = "Killer Croc",
+                    Birthday = new DateTime(1982, 9, 9),
+                    Address = "Arkham Asylum",
+                    Race = "Crocodile",
+                    Gender = "Male",
+                    InsurancePlan = insuranceManager.GetAllInsurancePlans()
+                                     .FirstOrDefault(i => i.Name == "Gotham Care")
+                },
+                new Patient
+                {
+                    ID = 10,
+                    Name = "Man-Bat",
+                    Birthday = new DateTime(1978, 12, 25),
+                    Address = "Arkham Asylum",
+                    Race = "Bat",
+                    Gender = "Male",
+                    InsurancePlan = insuranceManager.GetAllInsurancePlans()
+                                     .FirstOrDefault(i => i.Name == "Dark Knight Coverage")
                 }
             };
         }

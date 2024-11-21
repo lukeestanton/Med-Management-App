@@ -32,27 +32,63 @@ namespace MedManagementLibrary
                 new Treatment
                 {
                     ID = 1,
-                    Name = "Flu Shot",
-                    Price = 20.00m
+                    Name = "Meditation",
+                    Price = 60.00m
                 },
                 new Treatment
                 {
                     ID = 2,
-                    Name = "Covid Test",
-                    Price = 40.00m
+                    Name = "Physical Therapy",
+                    Price = 55.00m
                 },
                 new Treatment
                 {
                     ID = 3,
-                    Name = "Strep Test",
-                    Price = 50.00m
+                    Name = "Bone Repair",
+                    Price = 170.00m
                 },
                 new Treatment
                 {
                     ID = 4,
-                    Name = "Heart Surgery",
-                    Price = 900.00m
+                    Name = "Muscle Repair",
+                    Price = 165.00m
                 },
+                new Treatment
+                {
+                    ID = 5,
+                    Name = "Cognitive Therapy",
+                    Price = 80.00m
+                },
+                new Treatment
+                {
+                    ID = 6,
+                    Name = "Music Therapy",
+                    Price = 50.00m
+                },
+                new Treatment
+                {
+                    ID = 7,
+                    Name = "Organ Repair",
+                    Price = 290.00m
+                },
+                new Treatment
+                {
+                    ID = 8,
+                    Name = "Aromatherapy",
+                    Price = 40.00m
+                },
+                new Treatment
+                {
+                    ID = 9,
+                    Name = "Stress Relief",
+                    Price = 75.00m
+                },
+                new Treatment
+                {
+                    ID = 10,
+                    Name = "Brain Surgery",
+                    Price = 565.00m
+                }
             };
         }
 
