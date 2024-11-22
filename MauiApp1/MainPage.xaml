@@ -6,8 +6,9 @@
              BackgroundColor="#1C1C1C">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="30"> 
-
+        <VerticalStackLayout Padding="30" Spacing="25" HorizontalOptions="Center">
+            
+            <!-- Logo -->
             <Image
                 Source="medicalcarelogo.png"
                 WidthRequest="300"
@@ -17,67 +18,82 @@
 
             <!-- Subtitle -->
             <Label 
-                Text="Welcome to the premier medical management system." 
-                FontSize="18" 
-                TextColor="LightGray" 
-                HorizontalOptions="Center" 
-                HorizontalTextAlignment="Center" />
-
-            <!-- Button to Manage Patients -->
-            <Button 
-                Text="Manage Patients" 
-                Clicked="PatientsClicked"
-                TextColor="White"
-                BackgroundColor="#FF9800"
-                FontAttributes="Bold"
-                CornerRadius="10"
-                HeightRequest="60"
-                WidthRequest="250"
+                Text="Welcome to the premier medical management system!" 
+                FontSize="16" 
+                TextColor="#B0BEC5" 
                 HorizontalOptions="Center"
-                />
-            
-            
-            <!-- Button to Manage Physicians -->
-            <Button 
-                Text="Manage Physicians" 
-                Clicked="PhysicianManagerButtonClicked" 
-                BackgroundColor="#03A9F4"
-                TextColor="White"
-                FontAttributes="Bold"
-                CornerRadius="10"
-                HeightRequest="60"
-                WidthRequest="250"
-                HorizontalOptions="Center"
-                />
-            
-            <!-- Button to Manage Appointments -->
-            <Button 
-                Text="Manage Appointments" 
-                Clicked="AppointmentsClicked"
-                BackgroundColor="#4CAF50"
-                TextColor="White"
-                FontAttributes="Bold"
-                CornerRadius="10"
-                HeightRequest="60"
-                WidthRequest="250"
-                HorizontalOptions="Center" 
+                HorizontalTextAlignment="Center"
                 />
 
-            <!-- Button to Manage Treatments -->
-            <Button 
-                Text="Manage Treatments" 
-                Clicked="OnManageTreatmentsClicked"
-                BackgroundColor="#9C27B0"
-                TextColor="White"
-                FontAttributes="Bold"
-                CornerRadius="10"
-                HeightRequest="60"
-                WidthRequest="250"
-                HorizontalOptions="Center" 
-                />
+            <!-- Buttons Section -->
+            <VerticalStackLayout Spacing="20" HorizontalOptions="Center">
+                
+                <!-- Manage Patients -->
+                <Button 
+                    Text="Manage Patients" 
+                    Clicked="PatientsClicked"
+                    TextColor="White"
+                    BackgroundColor="#FF9800"
+                    FontAttributes="Bold"
+                    CornerRadius="15"
+                    HeightRequest="60"
+                    WidthRequest="260"
+                    HorizontalOptions="Center">
+                    <Button.Shadow>
+                        <Shadow Brush="#FF9800" Opacity="0.6" Radius="5" />
+                    </Button.Shadow>
+                </Button>
+                
+                <!-- Manage Physicians -->
+                <Button 
+                    Text="Manage Physicians" 
+                    Clicked="PhysicianManagerButtonClicked" 
+                    BackgroundColor="#03A9F4"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="15"
+                    HeightRequest="60"
+                    WidthRequest="260"
+                    HorizontalOptions="Center">
+                    <Button.Shadow>
+                        <Shadow Brush="#03A9F4" Opacity="0.6" Radius="5" />
+                    </Button.Shadow>
+                </Button>
+                
+                <!-- Manage Appointments -->
+                <Button 
+                    Text="Manage Appointments" 
+                    Clicked="AppointmentsClicked"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="15"
+                    HeightRequest="60"
+                    WidthRequest="260"
+                    HorizontalOptions="Center">
+                    <Button.Shadow>
+                        <Shadow Brush="#4CAF50" Opacity="0.6" Radius="5" />
+                    </Button.Shadow>
+                </Button>
+                
+                <!-- Manage Treatments -->
+                <Button 
+                    Text="Manage Treatments" 
+                    Clicked="OnManageTreatmentsClicked"
+                    BackgroundColor="#9C27B0"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="15"
+                    HeightRequest="60"
+                    WidthRequest="260"
+                    HorizontalOptions="Center">
+                    <Button.Shadow>
+                        <Shadow Brush="#9C27B0" Opacity="0.6" Radius="5" />
+                    </Button.Shadow>
+                </Button>
 
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 
 </ContentPage>
-

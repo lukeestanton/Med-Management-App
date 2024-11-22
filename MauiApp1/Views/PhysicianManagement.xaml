@@ -60,10 +60,10 @@
                             <Label Grid.Column="1" Text="{Binding Name}" />
 
                             <!-- Graduation Date -->
-                            <Label Grid.Column="2" Text="{Binding GraduationDate}" />
+                            <Label Grid.Column="2" Text="{Binding GraduationDate, StringFormat='{0:MM/dd/yyyy}'}" />
 
                             <!-- Specializations -->
-                            <Label Grid.Column="3" Text="{Binding Specializations}" />
+                            <Label Grid.Column="3" Text="{Binding Specializations, FallbackValue='No Specializations'}" />
 
                         </Grid>
                     </ViewCell>

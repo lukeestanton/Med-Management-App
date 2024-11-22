@@ -46,6 +46,8 @@ public class PhysicianViewModel : INotifyPropertyChanged
     public ObservableCollection<Specialization> AvailableSpecializations { get; set; }
     public ObservableCollection<Specialization> SelectedSpecializations { get; set; } = new ObservableCollection<Specialization>();
 
+    public string Specializations => string.Join(", ", SelectedSpecializations.Select(s => s.Name));
+
 
     public ICommand AddOrUpdateCommand { get; set; }
     public ICommand CancelCommand { get; set; }
@@ -155,6 +157,7 @@ public class PhysicianViewModel : INotifyPropertyChanged
         {
             Model.SpecializationIDs = SelectedSpecializations.Select(s => s.ID).ToList();
         }
+        NotifyPropertyChanged(nameof(Specializations));
     }
 
 
@@ -187,6 +190,8 @@ public class PhysicianViewModel : INotifyPropertyChanged
             SelectedSpecializations.Add(specialization);
         }
         SelectedSpecializations.CollectionChanged += SelectedSpecializations_CollectionChanged;
+
+        NotifyPropertyChanged(nameof(Specializations));
     }
 
     private void NotifyAllPropertiesChanged()

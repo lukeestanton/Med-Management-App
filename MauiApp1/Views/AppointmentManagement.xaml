@@ -6,6 +6,7 @@
              Title="Appointment Management"
              NavigatedTo="AppointmentManagement_NavigatedTo">
 
+
     <VerticalStackLayout Padding="20" Spacing="10">
 
         <!-- Search Bar -->
@@ -25,20 +26,22 @@
             <ListView.Header>
                 <Grid Padding="10" BackgroundColor="White">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Text="Patient Name" FontAttributes="Bold" />
                     <Label Grid.Column="1" Text="Physician Name" FontAttributes="Bold" />
-                    <Label Grid.Column="2" Text="Start Time" FontAttributes="Bold" />
-                    <Label Grid.Column="3" Text="End Time" FontAttributes="Bold" />
-                    <Label Grid.Column="4" Text="Price" FontAttributes="Bold" />
-                    <Label Grid.Column="5" Text="Price After Insurance" FontAttributes="Bold" />
+                    <Label Grid.Column="2" Text="Appointment Treatments" FontAttributes="Bold" />
+                    <Label Grid.Column="3" Text="Start Time" FontAttributes="Bold" />
+                    <Label Grid.Column="4" Text="End Time" FontAttributes="Bold" />
+                    <Label Grid.Column="5" Text="Price" FontAttributes="Bold" />
+                    <Label Grid.Column="6" Text="Price After Insurance" FontAttributes="Bold" />
                 </Grid>
             </ListView.Header>
 
@@ -47,10 +50,11 @@
                     <ViewCell>
                         <Grid Padding="10">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
@@ -61,17 +65,20 @@
                             <!-- Physician Name -->
                             <Label Grid.Column="1" Text="{Binding PhysicianName}" />
 
+                            <!-- Appointment Treatments -->
+                            <Label Grid.Column="2" Text="{Binding Treatments}" />
+
                             <!-- Start Time -->
-                            <Label Grid.Column="2" Text="{Binding StartTime}" />
+                            <Label Grid.Column="3" Text="{Binding StartTime}" />
 
                             <!-- End Time -->
-                            <Label Grid.Column="3" Text="{Binding EndTime}" />
+                            <Label Grid.Column="4" Text="{Binding EndTime}" />
 
                             <!-- Total Price -->
-                            <Label Grid.Column="4" Text="{Binding Price, StringFormat='{}{0:C}'}" />
+                            <Label Grid.Column="5" Text="{Binding Price, StringFormat='{}{0:C}'}" />
 
                             <!-- Insurance Price -->
-                            <Label Grid.Column="5" Text="{Binding InsurancePrice, StringFormat='{}{0:C}'}" />
+                            <Label Grid.Column="6" Text="{Binding InsurancePrice, StringFormat='{}{0:C}'}" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

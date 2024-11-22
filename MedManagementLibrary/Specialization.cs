@@ -11,17 +11,17 @@ public class Specialization
     public string Name { get; set; }
 
     public bool IsSelected
+    {
+        get => _isSelected;
+        set
         {
-            get => _isSelected;
-            set
+            if(_isSelected != value)
             {
-                if(_isSelected != value)
-                {
-                    _isSelected = value;
-                    NotifyPropertyChanged();
-                }
+                _isSelected = value;
+                NotifyPropertyChanged();
             }
         }
+    }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

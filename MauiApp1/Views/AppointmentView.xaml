@@ -62,8 +62,8 @@
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal" Padding="5">
                             <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" />
-                            <Label Text="{Binding Name}" VerticalOptions="Center" Margin="10,0,0,0" />
-                            <Label Text="{Binding Price, StringFormat='{}{0:C}'}" VerticalOptions="Center" Margin="10,0,0,0" />
+                            <Label Text="{Binding Name}" TextColor="White" FontSize="20" VerticalOptions="Center" Margin="10,0,0,0" />
+                            <Label Text="{Binding Price, StringFormat='{}{0:C}'}" TextColor="White" FontSize="20" VerticalOptions="Center" Margin="10,0,0,0" />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

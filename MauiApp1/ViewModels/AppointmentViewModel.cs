@@ -202,11 +202,13 @@ namespace MauiApp1.ViewModels
             }
         }
 
-        public string StartTimeDisplay => StartTime.ToString(@"hh\:mm");
-        public string EndTimeDisplay => EndTime.ToString(@"hh\:mm");
+        public string StartTimeDisplay => StartTime.ToString(@"hh\:mm tt");
+        public string EndTimeDisplay => EndTime.ToString(@"hh\:mm tt");
 
         public ObservableCollection<Treatment> AvailableTreatments { get; set; }
         public ObservableCollection<Treatment> SelectedTreatments { get; set; } = new ObservableCollection<Treatment>();
+
+        public string Treatments => string.Join(", ", SelectedTreatments.Select(t => t.Name));
 
         public decimal Price => SelectedTreatments.Sum(t => t.Price);
         public decimal InsurancePrice
