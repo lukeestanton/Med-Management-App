@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedManagementProject", "Med
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedManagementLibrary", "MedManagementLibrary\MedManagementLibrary.csproj", "{055E6A0E-0739-4923-8535-68CF432F6673}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Clinic", "Api.Clinic\Api.Clinic.csproj", "{82792977-196A-4403-B355-87A138844225}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{055E6A0E-0739-4923-8535-68CF432F6673}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{055E6A0E-0739-4923-8535-68CF432F6673}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{055E6A0E-0739-4923-8535-68CF432F6673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82792977-196A-4403-B355-87A138844225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82792977-196A-4403-B355-87A138844225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82792977-196A-4403-B355-87A138844225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82792977-196A-4403-B355-87A138844225}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
