@@ -58,6 +58,7 @@ namespace MauiApp1.ViewModels
 
         private async void DoAdd()
         {
+        
             await Shell.Current.GoToAsync("//AppointmentDetails?appointmentId=0");
         }
 

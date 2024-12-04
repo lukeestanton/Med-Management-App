@@ -32,25 +32,9 @@
 		<data>
 		aMzKOgohzGAv/lLBBlKjq/Ct6ig=
 		</data>
-		<key>Resources/dotnet_bot.png</key>
-		<data>
-		egvqYQJu98U5bepNqiiYGWJc9As=
-		</data>
-		<key>Resources/dotnet_bot@2x.png</key>
-		<data>
-		5Olnli4Cc1nAHZR7Qad9WEquVR0=
-		</data>
-		<key>Resources/dotnet_bot@3x.png</key>
-		<data>
-		Zt+VE+uuJQUze/d9zd3r+NdrtDw=
-		</data>
 		<key>Resources/medicalcarelogo.png</key>
 		<data>
 		hRLTEjtIyHNhgsiGCgSWqJqmNik=
-		</data>
-		<key>Resources/patientsbanner.png</key>
-		<data>
-		rFJzJ35UbafBJ1mFrmCkNi3xeKQ=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -59,28 +43,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SH6yV/EsxTV1OTbi2i2XFlngOl8hfS6wAkgtG7P/qTQ=
+			8pupiEwChJMklCJehZZCeJ0ZcGEyEywTHFPZZMezqtU=
 			</data>
 		</dict>
 		<key>MonoBundle/MauiApp1.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			a0oNbFS1e+D2jqK4lksKB5rgghQBC0cVTH7IY/FI84k=
+			Rm9DjdIcrrFxUjg1ws4eIp9jj99xCEAupzRfAhDQZqQ=
 			</data>
 		</dict>
 		<key>MonoBundle/MedManagementLibrary.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RsKwNjg4fav/yPEYxydD/X9D53pQO4EgvK0F1BQJJPU=
+			9c8wweKi5/ou6jfivOFx5sxMQZruqkATAqRpF4Y8x0k=
 			</data>
 		</dict>
 		<key>MonoBundle/MedManagementLibrary.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			QuAFM6v+IpJRuzzHWiqejdvT4UXn/cwN9PuVoa4zTlQ=
+			k7XKlP3Zk3iSCHVXHsCynkFtWyG/HJOXSVxupv6gUr4=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.CSharp.dll</key>
@@ -1375,7 +1359,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ljKXidx6sq1DEJO0N6rfqBfmE/+Qtd2KaXLpqdi0js4=
+			sOjx3le/SSzimniAS1FQcaIrtYdjkpJwDjobVZKmqvg=
 			</data>
 		</dict>
 		<key>MonoBundle/ar/Microsoft.Maui.Controls.resources.dll</key>
@@ -1693,39 +1677,11 @@
 			/pivYVdUHD7ChxCYuFQd16qpZbftUsb/YE4NjSFPMfQ=
 			</data>
 		</dict>
-		<key>Resources/dotnet_bot.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			FRD2xBX1wchOeHEX2Af77q7m8O7ECwhQ0qzPcfEGsTM=
-			</data>
-		</dict>
-		<key>Resources/dotnet_bot@2x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			A9+c5HONTmrGGxPzPiicd+2iwsPQSTUCIhuPtWauMa8=
-			</data>
-		</dict>
-		<key>Resources/dotnet_bot@3x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Up4t4C3+oRoTqJRc+zJSfhbhdg8R3zWbHkE+G9N4B9U=
-			</data>
-		</dict>
 		<key>Resources/medicalcarelogo.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			TFlZeUrMeidxkK4WQNJhtSL1eZGyKX/bM88PugrEwng=
-			</data>
-		</dict>
-		<key>Resources/patientsbanner.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			OjTu+Ta9Z6ER0ev5pMFX+P0mmRN3WrQI7HbqFJw1n5w=
 			</data>
 		</dict>
 	</dict>

@@ -66,6 +66,23 @@ namespace MedManagementLibrary
             return _appointments.FirstOrDefault(a => a.ID == id);
         }
 
+        public bool IsPhysicianAvailable(int physicianId, DateTime desiredStart, DateTime desiredEnd, int? currentAppointmentId = null) 
+        {
+            var existingAppointments = _appointments.Where(a =>
+                a.PhysicianID == physicianId &&
+                a.ID != currentAppointmentId);
+
+            foreach (var appointment in existingAppointments)
+            {
+                if (desiredStart < appointment.EndTime && desiredEnd > appointment.StartTime)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public void AddAppointment(Appointment appointment)
         {
             lock(_lock)

@@ -321,11 +321,14 @@ namespace MauiApp1.ViewModels
 
                 // Navigate back to Appointment Management
                 await Shell.Current.GoToAsync("//AppointmentManagement");
+
             }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
             }
+
+             AppointmentManager.Current.AddAppointment(Model);
         }
 
         private async void DoCancel()
@@ -368,6 +371,8 @@ namespace MauiApp1.ViewModels
 
             NotifyAllPropertiesChanged();
         }
+
+        
 
         private void LoadSelectedTreatments()
         {
