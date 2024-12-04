@@ -32,3 +32,5 @@
 /Users/lukestanton/csharp/Api.Clinic/obj/Debug/net8.0/Api.Clinic.pdb
 /Users/lukestanton/csharp/Api.Clinic/obj/Debug/net8.0/Api.Clinic.genruntimeconfig.cache
 /Users/lukestanton/csharp/Api.Clinic/obj/Debug/net8.0/ref/Api.Clinic.dll
+/Users/lukestanton/csharp/Api.Clinic/bin/Debug/net8.0/MedManagementLibrary.dll
+/Users/lukestanton/csharp/Api.Clinic/bin/Debug/net8.0/MedManagementLibrary.pdb
