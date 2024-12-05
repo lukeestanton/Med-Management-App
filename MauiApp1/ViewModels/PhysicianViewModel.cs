@@ -1,4 +1,5 @@
 using MedManagementLibrary;
+using MedManagementLibrary.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace MauiApp1.ViewModels
 {
     public class PhysicianViewModel
     {
-        public Physician? Model { get; set; }
+        public PhysicianDTO? Model { get; set; }
         public ICommand? DeleteCommand { get; set; }
         public ICommand? EditCommand { get; set; }
         public int Id
@@ -72,11 +73,11 @@ namespace MauiApp1.ViewModels
 
         public PhysicianViewModel()
         {
-            Model = new Physician();
+            Model = new PhysicianDTO();
             SetupCommands();
         }
 
-        public PhysicianViewModel(Physician? _model)
+        public PhysicianViewModel(PhysicianDTO? _model)
         {
             Model = _model;
             SetupCommands();

@@ -1,5 +1,6 @@
 using Api.Clinic.Database;
 using MedManagementLibrary;
+using MedManagementLibrary.DTO;
 
 namespace Api.Clinic.Enterprise
 {
@@ -7,33 +8,47 @@ namespace Api.Clinic.Enterprise
     {
         public PhysicianEC() { }
 
-        public IEnumerable<Physician> Physicians
+        public IEnumerable<PhysicianDTO> Physicians
         {
             get
             {
-                return FakeDatabase.Physicians;
+                return FakeDatabase.Physicians.Select(p => new PhysicianDTO(p));
             }
         }
 
-        public Physician? GetById(int id)
+        public PhysicianDTO? GetById(int id)
         {
-            return FakeDatabase.Physicians.FirstOrDefault(p => p.Id == id);
+            var physician = FakeDatabase
+                .Physicians
+                .FirstOrDefault(p => p.Id == id);
+
+            if(physician != null)
+            {
+                return new PhysicianDTO(physician);
+            }
+
+            return null;
         }
 
-        public Physician? Delete(int id)
+        public PhysicianDTO? Delete(int id)
         {
             var physicianToDelete = FakeDatabase.Physicians.FirstOrDefault(p => p.Id == id);
             if (physicianToDelete != null)
             {
                 FakeDatabase.Physicians.Remove(physicianToDelete);
+                return new PhysicianDTO(physicianToDelete);
             }
 
-            return physicianToDelete;
+            return null;
         }
 
-        public Physician? AddOrUpdate(Physician? physician)
+        public Physician? AddOrUpdate(PhysicianDTO? physician)
         {
-            return FakeDatabase.AddOrUpdatePhysician(physician);
+            if(physician == null)
+            {
+                return null;
+            }
+            return FakeDatabase.AddOrUpdatePhysician(new Physician(physician));
         }
     }
 }

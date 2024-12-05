@@ -1,7 +1,11 @@
 using MedManagementLibrary;
+using MedManagementLibrary.DTO;
+using Newtonsoft.Json;
+using PP.Library.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,12 +34,11 @@ namespace MedManagementLibrary
         {
             instance = null;
 
-            Physicians = new List<Physician>
-            {  
-                new Physician{Id = 1, Name = "John Doe"}
-                , new Physician{Id = 2, Name = "Jane Doe"}
-            };
+            var physiciansData = new WebRequestHandler().Get("/Physician").Result;
+
+            Physicians = JsonConvert.DeserializeObject<List<PhysicianDTO>>(physiciansData) ?? new List<PhysicianDTO>();
         }
+
         public int LastKey
         {
             get
@@ -48,8 +51,8 @@ namespace MedManagementLibrary
             }
         }
 
-        private List<Physician> physicians; 
-        public List<Physician> Physicians { 
+        private List<PhysicianDTO> physicians; 
+        public List<PhysicianDTO> Physicians { 
             get {
                 return physicians;
             }
@@ -63,7 +66,7 @@ namespace MedManagementLibrary
             }
         }
 
-        public void AddOrUpdatePhysician(Physician physician)
+        public void AddOrUpdatePhysician(PhysicianDTO physician)
         {
             bool isAdd = false;
             if (physician.Id <= 0)
@@ -79,12 +82,13 @@ namespace MedManagementLibrary
 
         }
 
-        public void DeletePhysician(int id) {
+        public async void DeletePhysician(int id) {
             var physicianToRemove = Physicians.FirstOrDefault(p => p.Id == id);
 
             if (physicianToRemove != null)
             {
                 Physicians.Remove(physicianToRemove);
+                await new WebRequestHandler().Delete($"/Physician/{id}");
             }
         }
     }

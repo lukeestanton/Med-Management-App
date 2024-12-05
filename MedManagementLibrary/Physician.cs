@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedManagementLibrary.DTO;
 
 namespace MedManagementLibrary
 {
@@ -10,7 +11,7 @@ namespace MedManagementLibrary
     {
         public override string ToString()
         {
-            return Display;
+            return $"[{Id}] {Name}";
         }
 
         public string Display
@@ -21,22 +22,20 @@ namespace MedManagementLibrary
             }
         }
         public int Id { get; set; }
-        private string? name;
-        public string Name { 
-            get {
-                return name ?? string.Empty;
-            }
-
-            set {
-                name = value;
-            }
-        }
-        public DateTime Birthday {  get; set; }
+        public string? Name  { get; set; }
+        public DateTime Birthday { get; set; }
 
         public Physician()
         {
             Name = string.Empty;
             Birthday = DateTime.MinValue;
+        }
+
+        public Physician(PhysicianDTO p)
+        {
+            Id = p.Id;
+            Name = p.Name;
+            Birthday = p.Birthday;
         }
     }
 }

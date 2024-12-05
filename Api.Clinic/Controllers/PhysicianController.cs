@@ -1,5 +1,6 @@
 using Api.Clinic.Enterprise;
 using MedManagementLibrary;
+using MedManagementLibrary.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Clinic.Controllers 
@@ -16,25 +17,25 @@ namespace Api.Clinic.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Physician> Get()
+        public IEnumerable<PhysicianDTO> Get()
         {
             return new PhysicianEC().Physicians;
         }
 
         [HttpGet("{id}")]
-        public Physician? GetById(int id)
+        public PhysicianDTO? GetById(int id)
         {
             return new PhysicianEC().GetById(id);
         }
 
         [HttpDelete("{id}")]
-        public Physician? Delete(int id)
+        public PhysicianDTO? Delete(int id)
         {
             return new PhysicianEC().Delete(id);
         }
 
         [HttpPost]
-        public Physician? AddOrUpdate([FromBody] Physician? physician)
+        public Physician? AddOrUpdate([FromBody] PhysicianDTO? physician)
         {
             return new PhysicianEC().AddOrUpdate(physician);
         }
