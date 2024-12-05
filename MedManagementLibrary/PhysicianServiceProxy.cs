@@ -67,6 +67,17 @@ namespace MedManagementLibrary
             }
         }
 
+        public async Task<List<PhysicianDTO>> Search(string query) 
+        {
+            var physiciansPayload = await new WebRequestHandler()
+                .Post("/Physician/Search", new Query(query));
+
+            Physicians = JsonConvert.DeserializeObject<List<PhysicianDTO>>(physiciansPayload)
+                ?? new List<PhysicianDTO>();
+
+            return Physicians;
+        }
+
         public async Task<PhysicianDTO?> AddOrUpdatePhysician(PhysicianDTO physician)
         {
             var payload = await new WebRequestHandler().Post("/physician", physician);

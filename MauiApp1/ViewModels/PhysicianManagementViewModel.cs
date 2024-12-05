@@ -31,7 +31,6 @@ namespace MauiApp1.ViewModels
                     .Physicians
                     .Where(p=>p != null)
                     .Where(p => p.Name.ToUpper().Contains(Query?.ToUpper() ?? string.Empty))
-                    .Take(100)
                     .Select(p => new PhysicianViewModel(p))
                     );
 
@@ -53,6 +52,15 @@ namespace MauiApp1.ViewModels
         public void Refresh()
         {
             NotifyPropertyChanged(nameof(Physicians));
+        }
+
+        public async void Search()
+        {
+            if (Query != null)
+            {
+                await PhysicianServiceProxy.Current.Search(Query);
+            }
+            Refresh();
         }
     }
 }

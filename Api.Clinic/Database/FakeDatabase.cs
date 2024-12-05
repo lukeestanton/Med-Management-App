@@ -32,17 +32,24 @@ namespace Api.Clinic.Database
             {
                 return null;
             }
-
             bool isAdd = false;
             if (physician.Id <= 0)
             {
                 physician.Id = LastKey + 1;
                 isAdd = true;
             }
-
             if (isAdd)
             {
                 Physicians.Add(physician);
+            }
+            else
+            {
+                var existing = Physicians.FirstOrDefault(p => p.Id == physician.Id);
+                if (existing != null)
+                {
+                    existing.Name = physician.Name;
+                    existing.Birthday = physician.Birthday;
+                }
             }
 
             return physician;

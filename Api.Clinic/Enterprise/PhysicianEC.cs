@@ -12,8 +12,16 @@ namespace Api.Clinic.Enterprise
         {
             get
             {
-                return FakeDatabase.Physicians.Select(p => new PhysicianDTO(p));
+                return FakeDatabase.Physicians.Take(100).Select(p => new PhysicianDTO(p));
             }
+        }
+
+        public IEnumerable<PhysicianDTO>? Search(string query)
+        {
+            return FakeDatabase.Physicians
+                .Where(p => p.Name.ToUpper()
+                    .Contains(query?.ToUpper() ?? string.Empty))
+                .Select(p => new PhysicianDTO(p));
         }
 
         public PhysicianDTO? GetById(int id)
@@ -42,13 +50,14 @@ namespace Api.Clinic.Enterprise
             return null;
         }
 
-        public Physician? AddOrUpdate(PhysicianDTO? physician)
+        public Physician? AddOrUpdate(PhysicianDTO? physicianDto)
         {
-            if(physician == null)
+            if(physicianDto == null)
             {
                 return null;
             }
-            return FakeDatabase.AddOrUpdatePhysician(new Physician(physician));
+            var physician = new Physician(physicianDto);
+            return FakeDatabase.AddOrUpdatePhysician(physician);
         }
     }
 }
