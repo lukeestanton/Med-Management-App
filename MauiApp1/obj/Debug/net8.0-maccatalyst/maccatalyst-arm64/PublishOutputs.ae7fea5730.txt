@@ -49,6 +49,7 @@
 /Users/lukestanton/csharp/MauiApp1/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/publish/../MauiApp1.app/Contents/MonoBundle/Microsoft.Maui.dll
 /Users/lukestanton/csharp/MauiApp1/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/publish/../MauiApp1.app/Contents/MonoBundle/Microsoft.Maui.Essentials.dll
 /Users/lukestanton/csharp/MauiApp1/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/publish/../MauiApp1.app/Contents/MonoBundle/Microsoft.Maui.Graphics.dll
+/Users/lukestanton/csharp/MauiApp1/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/publish/../MauiApp1.app/Contents/MonoBundle/Newtonsoft.Json.dll
 /Users/lukestanton/csharp/MauiApp1/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/publish/../MauiApp1.app/Contents/MonoBundle/MedManagementLibrary.dll
 /Users/lukestanton/csharp/MauiApp1/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/publish/../MauiApp1.app/Contents/MonoBundle/MauiApp1.dll
 /Users/lukestanton/csharp/MauiApp1/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/publish/../MauiApp1.app/Contents/MonoBundle/Microsoft.CSharp.dll

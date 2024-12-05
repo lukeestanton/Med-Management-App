@@ -43,28 +43,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8pupiEwChJMklCJehZZCeJ0ZcGEyEywTHFPZZMezqtU=
+			TJm+KjmVYk/KtlBngWSUnqJ1aU6OLPn3Qp3p/2Cd9Sk=
 			</data>
 		</dict>
 		<key>MonoBundle/MauiApp1.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Rm9DjdIcrrFxUjg1ws4eIp9jj99xCEAupzRfAhDQZqQ=
+			MVo7SZu67cDdx25WwtLo+BF1rrXtfb6BdMTbQBJrE4c=
 			</data>
 		</dict>
 		<key>MonoBundle/MedManagementLibrary.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9c8wweKi5/ou6jfivOFx5sxMQZruqkATAqRpF4Y8x0k=
+			1tALrwXuRauYgWqSwu9MG0z3xkXdD3GXT0EgOjEWu1I=
 			</data>
 		</dict>
 		<key>MonoBundle/MedManagementLibrary.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			k7XKlP3Zk3iSCHVXHsCynkFtWyG/HJOXSVxupv6gUr4=
+			fVDy+j0NFNAlJsE7hVuYaXRRWnSrbsua5YCbWaNgvUQ=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.CSharp.dll</key>
@@ -219,6 +219,13 @@
 			<key>hash2</key>
 			<data>
 			d8TldomKIUyoyFswwMpbwauKjTYeAhjVYiE3T8U5R5g=
+			</data>
+		</dict>
+		<key>MonoBundle/Newtonsoft.Json.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			IsZJ91/OW+fHzNqIgEc7Y072ns8z9dGritiSyvR9Wgc=
 			</data>
 		</dict>
 		<key>MonoBundle/System.AppContext.dll</key>
@@ -1359,7 +1366,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			sOjx3le/SSzimniAS1FQcaIrtYdjkpJwDjobVZKmqvg=
+			vVHlnQWW+KkmfPsh5OQ82mg9uA/K91WXIEkduWzCcFI=
 			</data>
 		</dict>
 		<key>MonoBundle/ar/Microsoft.Maui.Controls.resources.dll</key>

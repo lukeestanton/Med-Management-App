@@ -117,4 +117,3 @@ namespace MauiApp1.ViewModels
         }
     }
 }
-

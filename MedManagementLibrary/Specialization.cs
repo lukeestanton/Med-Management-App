@@ -1,35 +1,36 @@
-using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MedManagementLibrary;
-
-public class Specialization
+namespace MedManagementLibrary
 {
-    private bool _isSelected;
-    public int ID { get; set; }
-    public string Name { get; set; }
-
-    public bool IsSelected
+    public class Specialization : INotifyPropertyChanged
     {
-        get => _isSelected;
-        set
+        private bool _isSelected;
+        public int ID { get; set; }
+        public string Name { get; set; }
+
+        public bool IsSelected
         {
-            if(_isSelected != value)
+            get => _isSelected;
+            set
             {
-                _isSelected = value;
-                NotifyPropertyChanged();
+                if (_isSelected != value)
+                {
+                    _isSelected = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
-    }
+
+        public Specialization()
+        {
+            Name = "No Specialization";
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-    public Specialization() {
-        Name = "No Specialization";
     }
 }

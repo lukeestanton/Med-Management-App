@@ -10,3 +10,4 @@
 /Users/lukestanton/csharp/MedManagementLibrary/obj/Debug/net8.0/refint/MedManagementLibrary.dll
 /Users/lukestanton/csharp/MedManagementLibrary/obj/Debug/net8.0/MedManagementLibrary.pdb
 /Users/lukestanton/csharp/MedManagementLibrary/obj/Debug/net8.0/ref/MedManagementLibrary.dll
+/Users/lukestanton/csharp/MedManagementLibrary/obj/Debug/net8.0/MedManagementLibrary.csproj.AssemblyReference.cache
