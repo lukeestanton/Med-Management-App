@@ -5,6 +5,7 @@ using PP.Library.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,19 +67,27 @@ namespace MedManagementLibrary
             }
         }
 
-        public void AddOrUpdatePhysician(PhysicianDTO physician)
+        public async Task<PhysicianDTO?> AddOrUpdatePhysician(PhysicianDTO physician)
         {
-            bool isAdd = false;
-            if (physician.Id <= 0)
+            var payload = await new WebRequestHandler().Post("/physician", physician);
+            var newPhysician = JsonConvert.DeserializeObject<PhysicianDTO>(payload);
+            if(newPhysician != null && newPhysician.Id > 0 && physician.Id == 0)
             {
-                physician.Id = LastKey + 1;
-                isAdd = true;
+                Physicians.Add(newPhysician);
+            } 
+            else if(newPhysician != null && physician != null && physician.Id > 0 && physician.Id == newPhysician.Id)
+            {
+                var currentPhysician = Physicians.FirstOrDefault(p => p.Id == newPhysician.Id);
+                var index = Physicians.Count;
+                if (currentPhysician != null)
+                {
+                    index = Physicians.IndexOf(currentPhysician);
+                    Physicians.RemoveAt(index);
+                }
+                Physicians.Insert(index, newPhysician);
             }
 
-            if(isAdd)
-            {
-                Physicians.Add(physician);
-            }
+            return newPhysician;
 
         }
 

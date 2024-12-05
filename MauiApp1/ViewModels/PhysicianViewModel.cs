@@ -83,16 +83,16 @@ namespace MauiApp1.ViewModels
             SetupCommands();
         }
 
-        public void ExecuteAdd()
+        public async void ExecuteAdd()
         {
             if (Model != null)
             {
-                PhysicianServiceProxy
+                await PhysicianServiceProxy
                 .Current
                 .AddOrUpdatePhysician(Model);
             }
 
-            Shell.Current.GoToAsync("//Physicians");
+            await Shell.Current.GoToAsync("//Physicians");
         }
     }
 }
