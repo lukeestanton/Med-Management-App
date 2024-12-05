@@ -11,29 +11,27 @@ namespace MedManagementLibrary.DTO
     {
         public override string ToString()
         {
-            return $"[{ID}] {Name}";
+            return $"[{Id}] {Name}";
         }
 
         public string Display
         {
             get
             {
-                return $"[{ID}] {Name}";
+                return $"[{Id}] {Name}";
             }
         }
 
-        public int ID { get; set; } 
+        public int Id { get; set; } 
         public string? Name { get; set; }
-        public DateTime GraduationDate { get; set; }
-        public List<int>? SpecializationIDs { get; set; }
+        public DateTime Birthday { get; set; }
 
         public PhysicianDTO() { }
         public PhysicianDTO(Physician p)
         {
-            ID = p.ID;
+            Id = p.Id;
             Name = p.Name;
-            GraduationDate = p.GraduationDate;
-            SpecializationIDs = p.SpecializationIDs;
+            Birthday = p.Birthday;
         }
     }
 }

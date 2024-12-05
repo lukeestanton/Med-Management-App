@@ -47,7 +47,7 @@
                 <!-- Manage Physicians -->
                 <Button 
                     Text="Manage Physicians" 
-                    Clicked="PhysicianManagerButtonClicked" 
+                    Clicked="PhysiciansClicked" 
                     BackgroundColor="#03A9F4"
                     TextColor="White"
                     FontAttributes="Bold"

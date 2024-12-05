@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MedManagementLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a36f52fb195214d359cfe07c80ea29796b327667")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b950bba7ab20fe492670f083109ac83e41df7d2")]
 [assembly: System.Reflection.AssemblyProductAttribute("MedManagementLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MedManagementLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

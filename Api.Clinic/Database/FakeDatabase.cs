@@ -1,44 +1,51 @@
-using System;
 using MedManagementLibrary;
-namespace Api.Clinic.Database 
+
+namespace Api.Clinic.Database
 {
     static public class FakeDatabase
     {
-        public static IEnumerable<Physician> Physicians 
+        public static int LastKey
         {
-            get {
-                return new List<Physician>
+            get
+            {
+                if (Physicians.Any())
                 {
-                    new Physician
-                    {
-                        ID = 1,
-                        Name = "Batman",
-                        GraduationDate = new DateTime(2010, 8, 9),
-                        SpecializationIDs = new List<int> { 1, 3, 4 }
-                    },
-                    new Physician
-                    {
-                        ID = 2,
-                        Name = "Gordon",
-                        GraduationDate = new DateTime(1993, 5, 1),
-                        SpecializationIDs = new List<int> { 1, 2 }
-                    },
-                    new Physician
-                    {
-                        ID = 3,
-                        Name = "Robin",
-                        GraduationDate = new DateTime(2023, 1, 10),
-                        SpecializationIDs = new List<int> { 1 }
-                    },
-                    new Physician
-                    {
-                        ID = 4,
-                        Name = "Alfred",
-                        GraduationDate = new DateTime(1923, 3, 11),
-                        SpecializationIDs = new List<int> { 2, 3, 4 }
-                    }
-                };
+                    return Physicians.Select(x => x.Id).Max();
+                }
+                return 0;
             }
+        }
+        private static List<Physician> physicians = new List<Physician>
+                {
+                    new Physician{Id = 1, Name = "John Doe"}
+                    , new Physician{Id = 2, Name = "Jane Doe"}
+                };
+        public static List<Physician> Physicians { 
+            get
+            {
+                return physicians;
+            } 
+        }
+        public static Physician? AddOrUpdatePhysician(Physician? physician)
+        {
+            if (physician == null)
+            {
+                return null;
+            }
+
+            bool isAdd = false;
+            if (physician.Id <= 0)
+            {
+                physician.Id = LastKey + 1;
+                isAdd = true;
+            }
+
+            if (isAdd)
+            {
+                Physicians.Add(physician);
+            }
+
+            return physician;
         }
     }
 }

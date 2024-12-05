@@ -1,22 +1,48 @@
 using MauiApp1.ViewModels;
 using MedManagementLibrary;
 
+
 namespace MauiApp1.Views;
 
 [QueryProperty(nameof(PhysicianId), "physicianId")]
 public partial class PhysicianView : ContentPage
 {
+	public PhysicianView()
+	{
+		InitializeComponent();
+		
+	}
     public int PhysicianId { get; set; }
 
-    public PhysicianViewModel? ViewModel => BindingContext as PhysicianViewModel;
-
-    public PhysicianView()
+    private void CancelClicked(object sender, EventArgs e)
     {
-        InitializeComponent();
+		Shell.Current.GoToAsync("//Physicians");
     }
 
-    private void PhysicianView_NavigatedTo(object sender, EventArgs e)
+    private void AddClicked(object sender, EventArgs e)
     {
-        ViewModel.LoadPhysician(PhysicianId);
+        (BindingContext as PhysicianViewModel)?.ExecuteAdd();
+    }
+
+    private void PhysicianView_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+        //TODO: this really needs to be in a view model
+        if(PhysicianId > 0)
+        {
+            var model = PhysicianServiceProxy.Current
+                .Physicians.FirstOrDefault(p => p.Id == PhysicianId);
+            if(model != null)
+            {
+                BindingContext = new PhysicianViewModel(model);
+            } else
+            {
+                BindingContext = new PhysicianViewModel();
+            }
+            
+        } else
+        {
+            BindingContext = new PhysicianViewModel();
+        }
+        
     }
 }

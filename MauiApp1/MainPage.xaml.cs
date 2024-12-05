@@ -12,9 +12,9 @@
             Shell.Current.GoToAsync("//Patients");
         }
 
-        private void PhysicianManagerButtonClicked(object sender, EventArgs e)
+        private void PhysiciansClicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//PhysicianManagement");
+            Shell.Current.GoToAsync("//Physicians");
         }
 
         private void AppointmentsClicked(object sender, EventArgs e)
