@@ -36,10 +36,8 @@ namespace MedManagementLibrary
                     StartTime = DateTime.Now.AddDays(1).AddHours(9), 
                     EndTime = DateTime.Now.AddDays(1).AddHours(10), 
                     PatientID = 1, 
-                    PhysicianID = 1,
                     TreatmentIDs = new List<int> { 1 },
-                    Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 1),
-                    Physician = PhysicianManager.Current.GetAllPhysicians().FirstOrDefault(p => p.ID == 1)
+                    Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 1)
                 },
                 new Appointment 
                 { 
@@ -48,10 +46,8 @@ namespace MedManagementLibrary
                     StartTime = DateTime.Now.AddDays(2).AddHours(11), 
                     EndTime = DateTime.Now.AddDays(2).AddHours(12), 
                     PatientID = 2, 
-                    PhysicianID = 2,
                     TreatmentIDs = new List<int> { 2, 3 },
-                    Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 2),
-                    Physician = PhysicianManager.Current.GetAllPhysicians().FirstOrDefault(p => p.ID == 2)
+                    Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 2)
                 }
             };
         }
@@ -85,16 +81,13 @@ namespace MedManagementLibrary
                         existingAppointment.StartTime = appointment.StartTime;
                         existingAppointment.EndTime = appointment.EndTime;
                         existingAppointment.PatientID = appointment.PatientID;
-                        existingAppointment.PhysicianID = appointment.PhysicianID;
                         existingAppointment.TreatmentIDs = appointment.TreatmentIDs;
                         existingAppointment.Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == appointment.PatientID);
-                        existingAppointment.Physician = PhysicianManager.Current.GetAllPhysicians().FirstOrDefault(p => p.ID == appointment.PhysicianID);
                     }
                     else
                     {
                         // If ID does not exist, add as new
                         appointment.Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == appointment.PatientID);
-                        appointment.Physician = PhysicianManager.Current.GetAllPhysicians().FirstOrDefault(p => p.ID == appointment.PhysicianID);
                         _appointments.Add(appointment);
                     }
                 }
