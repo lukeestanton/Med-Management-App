@@ -63,19 +63,16 @@ namespace MauiApp1.ViewModels
         {
             try
             {
-                // Validation
                 if (string.IsNullOrWhiteSpace(Name))
                 {
                     await Application.Current.MainPage.DisplayAlert("Validation Error", "Please enter a treatment name.", "OK");
                     return;
                 }
 
-                // Add or update treatment
                 TreatmentManager.Current.AddTreatment(model);
 
                 await Application.Current.MainPage.DisplayAlert("Success", "Treatment saved successfully.", "OK");
 
-                // Navigate back to Patient Management
                 await Shell.Current.GoToAsync("//Treatments");
             }
             catch (Exception ex)
@@ -86,7 +83,6 @@ namespace MauiApp1.ViewModels
 
         private async void DoCancel()
         {
-            // Navigate back to Treatment Management without saving
             await Shell.Current.GoToAsync("//Treatments");
         }
 

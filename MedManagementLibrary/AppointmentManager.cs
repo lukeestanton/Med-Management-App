@@ -18,8 +18,8 @@ namespace MedManagementLibrary
                     {
                         _instance = new AppointmentManager();
                     }
-                    return _instance;
                 }
+                return _instance;
             }
         }
 
@@ -38,7 +38,8 @@ namespace MedManagementLibrary
                     PatientID = 1, 
                     PhysicianId = 1,
                     TreatmentIDs = new List<int> { 1 },
-                    Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 1)
+                    Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 1),
+                    Physician = PhysicianServiceProxy.Current.Physicians.FirstOrDefault(p => p.Id == 1)
                 },
                 new Appointment 
                 { 
@@ -49,7 +50,8 @@ namespace MedManagementLibrary
                     PatientID = 2,
                     PhysicianId = 2,
                     TreatmentIDs = new List<int> { 2, 3 },
-                    Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 2)
+                    Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 2),
+                    Physician = PhysicianServiceProxy.Current.Physicians.FirstOrDefault(p => p.Id == 2)
                 }
             };
         }
@@ -62,6 +64,18 @@ namespace MedManagementLibrary
         public Appointment? GetAppointmentById(int id)
         {
             return _appointments.FirstOrDefault(a => a.ID == id);
+        }
+
+        public bool IsPhysicianAvailable(int physicianId, DateTime desiredStart, DateTime desiredEnd, int? currentAppointmentId = null)
+        {
+            var overlappingAppointments = _appointments.Where(a =>
+                a.PhysicianId == physicianId &&
+                (currentAppointmentId == null || a.ID != currentAppointmentId.Value) &&
+                a.StartTime < desiredEnd &&
+                a.EndTime > desiredStart
+            );
+
+            return !overlappingAppointments.Any();
         }
 
         public void AddAppointment(Appointment appointment)
@@ -78,18 +92,19 @@ namespace MedManagementLibrary
                     var existingAppointment = _appointments.FirstOrDefault(a => a.ID == appointment.ID);
                     if (existingAppointment != null)
                     {
-                        // Update existing appointment
                         existingAppointment.Name = appointment.Name;
                         existingAppointment.StartTime = appointment.StartTime;
                         existingAppointment.EndTime = appointment.EndTime;
                         existingAppointment.PatientID = appointment.PatientID;
+                        existingAppointment.PhysicianId = appointment.PhysicianId;
                         existingAppointment.TreatmentIDs = appointment.TreatmentIDs;
                         existingAppointment.Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == appointment.PatientID);
+                        existingAppointment.Physician = PhysicianServiceProxy.Current.Physicians.FirstOrDefault(p => p.Id == appointment.PhysicianId);
                     }
                     else
                     {
-                        // If ID does not exist, add as new
                         appointment.Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == appointment.PatientID);
+                        appointment.Physician = PhysicianServiceProxy.Current.Physicians.FirstOrDefault(p => p.Id == appointment.PhysicianId);
                         _appointments.Add(appointment);
                     }
                 }

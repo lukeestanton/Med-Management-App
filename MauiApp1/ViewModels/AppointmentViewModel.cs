@@ -94,7 +94,8 @@ namespace MauiApp1.ViewModels
             }
         }
 
-        public PhysicianDTO? SelectedPhysician { 
+        public PhysicianDTO? SelectedPhysician
+        { 
             get
             {
                 return Model?.Physician;
@@ -107,10 +108,11 @@ namespace MauiApp1.ViewModels
                 {
                     Model.Physician = selectedPhysician;
                     Model.PhysicianId = selectedPhysician?.Id ?? 0;
+                    NotifyPropertyChanged(nameof(SelectedPhysician));
                 }
-
             }
-         }
+        }
+
         public ObservableCollection<PhysicianDTO> Physicians { 
             get
             {
@@ -118,8 +120,6 @@ namespace MauiApp1.ViewModels
             }
         }
 
-
-  
         public DateTime MinStartDate
         {
             get
@@ -278,10 +278,8 @@ namespace MauiApp1.ViewModels
 
         private void InitializeData()
         {
-            // Initialize Available Treatments
             AvailableTreatments = new ObservableCollection<Treatment>(TreatmentManager.Current.GetAllTreatments());
 
-            // Subscribe to changes in SelectedTreatments
             SelectedTreatments.CollectionChanged += SelectedTreatments_CollectionChanged;
         }
 
@@ -295,10 +293,15 @@ namespace MauiApp1.ViewModels
         {
             try
             {
-                // Validation
                 if (SelectedPatient == null)
                 {
                     await Application.Current.MainPage.DisplayAlert("Validation Error", "Please select a patient.", "OK");
+                    return;
+                }
+
+                if (SelectedPhysician == null)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Validation Error", "Please select a physician.", "OK");
                     return;
                 }
 
@@ -308,18 +311,33 @@ namespace MauiApp1.ViewModels
                     return;
                 }
 
-                // Assign selected treatments
                 Model.TreatmentIDs = SelectedTreatments.Select(t => t.ID).ToList();
 
-                // Optionally, set appointment name based on patient and treatments
+                // Set appointment name based on patient and treatments
                 Model.Name = $"{SelectedPatient.Name} - {string.Join(", ", SelectedTreatments.Select(t => t.Name))}";
 
-                // Add or update appointment
+                DateTime desiredStart = Model.StartTime;
+                DateTime desiredEnd = Model.EndTime;
+
+                bool isAvailable = AppointmentManager.Current.IsPhysicianAvailable(
+                    SelectedPhysician.Id,
+                    desiredStart,
+                    desiredEnd,
+                    Model?.ID
+                );
+
+                if (!isAvailable)
+                {
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Physician Unavailable",
+                        "The selected physician is already booked during this time.",
+                        "OK");
+                    return;
+                }
                 AppointmentManager.Current.AddAppointment(Model);
 
                 await Application.Current.MainPage.DisplayAlert("Success", "Appointment saved successfully.", "OK");
 
-                // Navigate back to Appointment Management
                 await Shell.Current.GoToAsync("//AppointmentManagement");
             }
             catch (Exception ex)
@@ -328,15 +346,14 @@ namespace MauiApp1.ViewModels
             }
         }
 
+
         private async void DoCancel()
         {
-            // Navigate back to Appointment Management without saving
             await Shell.Current.GoToAsync("//AppointmentManagement");
         }
 
         private void SelectedTreatments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            // Update the model's TreatmentIDs
             if (Model != null)
             {
                 Model.TreatmentIDs = SelectedTreatments.Select(t => t.ID).ToList();
@@ -354,6 +371,7 @@ namespace MauiApp1.ViewModels
                 {
                     Model = selectedAppointment;
                     SelectedPatient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == Model.PatientID);
+                    SelectedPhysician = PhysicianServiceProxy.Current.Physicians.FirstOrDefault(p => p.Id == Model.PhysicianId);
                     LoadSelectedTreatments();
                 }
             }
@@ -361,11 +379,13 @@ namespace MauiApp1.ViewModels
             {
                 Model = new Appointment();
                 SelectedPatient = null;
+                SelectedPhysician = null;
                 SelectedTreatments.Clear();
             }
 
             NotifyAllPropertiesChanged();
         }
+
 
         private void LoadSelectedTreatments()
         {

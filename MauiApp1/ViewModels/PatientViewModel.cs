@@ -119,7 +119,6 @@ public class PatientViewModel : INotifyPropertyChanged
     {
         try
         {
-            // Validation
             if (string.IsNullOrWhiteSpace(Name))
             {
                 await Application.Current.MainPage.DisplayAlert("Validation Error", "Please enter a patient name.", "OK");
@@ -132,12 +131,10 @@ public class PatientViewModel : INotifyPropertyChanged
                 return;
             }
 
-            // Add or update patient
             PatientManager.Current.AddPatient(model);
 
             await Application.Current.MainPage.DisplayAlert("Success", "Patient saved successfully.", "OK");
 
-            // Navigate back to Patient Management
             await Shell.Current.GoToAsync("//Patients");
         }
         catch (Exception ex)
@@ -148,7 +145,6 @@ public class PatientViewModel : INotifyPropertyChanged
 
     private async void DoCancel()
     {
-        // Navigate back to Patient Management without saving
         await Shell.Current.GoToAsync("//Patients");
     }
 

@@ -26,7 +26,6 @@ public partial class PhysicianView : ContentPage
 
     private void PhysicianView_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        //TODO: this really needs to be in a view model
         if(PhysicianId > 0)
         {
             var model = PhysicianServiceProxy.Current

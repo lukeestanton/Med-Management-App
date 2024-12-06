@@ -13,7 +13,6 @@ public partial class AppointmentView : ContentPage
     public AppointmentView()
     {
         InitializeComponent();
-        // BindingContext is set in XAML
     }
 
     private void AppointmentView_NavigatedTo(object sender, EventArgs e)
