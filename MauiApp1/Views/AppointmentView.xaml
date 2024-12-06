@@ -30,6 +30,19 @@
                 </ListView.ItemTemplate>
             </ListView>
 
+            <!-- Select Physician -->
+            <Label Text="Select a Physician" FontAttributes="Bold" />
+            <ListView 
+                ItemsSource="{Binding Physicians}"
+                SelectedItem="{Binding SelectedPhysician}"
+                HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
             <!-- Appointment Start Time -->
             <Label Text="Start Time" FontAttributes="Bold" />
             <DatePicker Date="{Binding StartDate}" MinimumDate="{Binding MinStartDate}" />

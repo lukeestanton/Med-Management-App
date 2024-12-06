@@ -36,6 +36,7 @@ namespace MedManagementLibrary
                     StartTime = DateTime.Now.AddDays(1).AddHours(9), 
                     EndTime = DateTime.Now.AddDays(1).AddHours(10), 
                     PatientID = 1, 
+                    PhysicianId = 1,
                     TreatmentIDs = new List<int> { 1 },
                     Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 1)
                 },
@@ -45,7 +46,8 @@ namespace MedManagementLibrary
                     Name = "Harley Quinn - Physical Therapy and Bone Repair",
                     StartTime = DateTime.Now.AddDays(2).AddHours(11), 
                     EndTime = DateTime.Now.AddDays(2).AddHours(12), 
-                    PatientID = 2, 
+                    PatientID = 2,
+                    PhysicianId = 2,
                     TreatmentIDs = new List<int> { 2, 3 },
                     Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 2)
                 }

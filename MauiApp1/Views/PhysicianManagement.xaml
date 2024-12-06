@@ -2,44 +2,60 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.PhysicianManagement"
-             Title="PhysicianManagement"
-             NavigatedTo="PhysicianManagement_NavigatedTo"
-             >
-    <VerticalStackLayout>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="12*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Entry Grid.Column="0" Text="{Binding Query}"/>
-            <Button Grid.Column="1" Text="Search" Clicked="SearchClicked"/>
-        </Grid>
+             Title="Physician Management"
+             NavigatedTo="PhysicianManagement_NavigatedTo">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        
+        <!-- Search Bar -->
+        <SearchBar Placeholder="Search Physicians"
+                   Text="{Binding Query}"
+                   SearchButtonPressed="SearchClicked" />
+
+        <!-- Physicians List -->
         <ListView
+            x:Name="PhysiciansListView"
             ItemsSource="{Binding Physicians}"
             SelectedItem="{Binding SelectedPhysician}"
-            >
+            HasUnevenRows="True"
+            SelectionMode="Single">
+            
+            <!-- ListView Header -->
+            <ListView.Header>
+                <Grid Padding="10" BackgroundColor="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="ID" FontAttributes="Bold" />
+                    <Label Grid.Column="1" Text="Name" FontAttributes="Bold" />
+                </Grid>
+            </ListView.Header>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
+                        <Grid Padding="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
                             </Grid.ColumnDefinitions>
-                            <Label FontAttributes="Bold" Grid.Column="0" Text="{Binding Id}"/>
-                            <Label Grid.Column="1" Text="{Binding Name}"/>
-                            <Button Grid.Column="2" Text="Edit" Command="{Binding EditCommand}" CommandParameter="{Binding}"/>
-                            <Button Grid.Column="3" Text="Delete" Command="{Binding DeleteCommand}" Clicked="RefreshClicked"/>
+                            <Label Grid.Column="0" Text="{Binding Id}" />
+                            <Label Grid.Column="1" Text="{Binding Name}" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Add" Clicked="AddClicked"/>
-        <Button Text="Edit" Clicked="EditClicked"/>
-        <Button Text="Delete" Clicked="DeleteClicked"/>
-        <Button Text="Cancel" Clicked="CancelClicked" />
+
+        <!-- Action Buttons -->
+        <HorizontalStackLayout Spacing="20" Padding="0,20,0,0">
+            <Button Text="New Physician" Clicked="AddClicked"/>
+            <Button Text="Edit Physician" Clicked="EditClicked"/>
+            <Button Text="Delete Physician" Clicked="DeleteClicked"/>
+            <Button Text="Cancel" Clicked="CancelClicked"/>
+        </HorizontalStackLayout>
+
     </VerticalStackLayout>
 </ContentPage>

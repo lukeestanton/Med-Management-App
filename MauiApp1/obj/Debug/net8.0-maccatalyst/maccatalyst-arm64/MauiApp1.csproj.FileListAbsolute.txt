@@ -301,6 +301,7 @@
 /Users/lukestanton/csharp/MauiApp1/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/MauiApp1.genruntimeconfig.cache
 /Users/lukestanton/csharp/MauiApp1/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/ref/MauiApp1.dll
 /Users/lukestanton/csharp/MauiApp1/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/Newtonsoft.Json.dll
+/Users/lukestanton/csharp/MauiApp1/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/MedManagementLibrary.stamp
 /Users/lukestanton/csharp/MauiApp1/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/Microsoft.CSharp.stamp
 /Users/lukestanton/csharp/MauiApp1/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/Microsoft.Extensions.Configuration.Abstractions.stamp
 /Users/lukestanton/csharp/MauiApp1/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/resourcestamps/Microsoft.Extensions.Configuration.stamp

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MedManagementLibrary;
+using MedManagementLibrary.DTO;
 using Microsoft.Maui.Controls;
 
 namespace MauiApp1.ViewModels
@@ -72,6 +73,53 @@ namespace MauiApp1.ViewModels
             }
         }
 
+
+
+        public string PhysicianName
+        {
+            get
+            {
+                if(Model != null && Model.PhysicianId > 0)
+                {
+                    if(Model.Physician == null)
+                    {
+                        Model.Physician = PhysicianServiceProxy
+                            .Current
+                            .Physicians
+                            .FirstOrDefault(p => p.Id == Model.PhysicianId);
+                    }
+                }
+
+                return Model?.Physician?.Name ?? string.Empty;
+            }
+        }
+
+        public PhysicianDTO? SelectedPhysician { 
+            get
+            {
+                return Model?.Physician;
+            }
+
+            set
+            {
+                var selectedPhysician = value;
+                if(Model != null)
+                {
+                    Model.Physician = selectedPhysician;
+                    Model.PhysicianId = selectedPhysician?.Id ?? 0;
+                }
+
+            }
+         }
+        public ObservableCollection<PhysicianDTO> Physicians { 
+            get
+            {
+                return new ObservableCollection<PhysicianDTO>(PhysicianServiceProxy.Current.Physicians);
+            }
+        }
+
+
+  
         public DateTime MinStartDate
         {
             get
