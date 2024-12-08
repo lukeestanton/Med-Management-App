@@ -27,33 +27,7 @@ namespace MedManagementLibrary
 
         private AppointmentManager()
         {
-            _appointments = new List<Appointment>
-            {
-                new Appointment 
-                { 
-                    ID = 1, 
-                    Name = "Joker - Meditation",
-                    StartTime = DateTime.Now.AddDays(1).AddHours(9), 
-                    EndTime = DateTime.Now.AddDays(1).AddHours(10), 
-                    PatientID = 1, 
-                    PhysicianId = 1,
-                    TreatmentIDs = new List<int> { 1 },
-                    Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 1),
-                    Physician = PhysicianServiceProxy.Current.Physicians.FirstOrDefault(p => p.Id == 1)
-                },
-                new Appointment 
-                { 
-                    ID = 2, 
-                    Name = "Harley Quinn - Physical Therapy and Bone Repair",
-                    StartTime = DateTime.Now.AddDays(2).AddHours(11), 
-                    EndTime = DateTime.Now.AddDays(2).AddHours(12), 
-                    PatientID = 2,
-                    PhysicianId = 2,
-                    TreatmentIDs = new List<int> { 2, 3 },
-                    Patient = PatientManager.Current.GetAllPatients().FirstOrDefault(p => p.ID == 2),
-                    Physician = PhysicianServiceProxy.Current.Physicians.FirstOrDefault(p => p.Id == 2)
-                }
-            };
+            _appointments = new List<Appointment>();
         }
 
         public List<Appointment> GetAllAppointments()

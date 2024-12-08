@@ -1,37 +1,20 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MedManagementLibrary;
 
-namespace MedManagementLibrary.DTO 
+namespace MedManagementLibrary.DTO
 {
     public class PhysicianDTO
     {
-        public override string ToString()
-        {
-            return $"[{Id}] {Name}";
-        }
-
-        public string Display
-        {
-            get
-            {
-                return $"[{Id}] {Name}";
-            }
-        }
-
-        public int Id { get; set; } 
-        public string? Name { get; set; }
-        public DateTime Birthday { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public DateTime? Birthday { get; set; }
 
         public PhysicianDTO() { }
-        public PhysicianDTO(Physician p)
+
+        public PhysicianDTO(Physician physician)
         {
-            Id = p.Id;
-            Name = p.Name;
-            Birthday = p.Birthday;
+            Id = physician.Id;
+            Name = physician.Name;
+            Birthday = physician.Birthday;
         }
     }
 }

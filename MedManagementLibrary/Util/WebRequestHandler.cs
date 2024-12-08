@@ -70,27 +70,39 @@ namespace PP.Library.Utilities
         public async Task<string> Post(string url, object obj)
         {
             var fullUrl = $"http://{host}:{port}{url}";
-            using (var client = new HttpClient())
+            try
             {
-                using(var request = new HttpRequestMessage(HttpMethod.Post, fullUrl))
+                using(var client = new HttpClient())
                 {
-                    var json = JsonConvert.SerializeObject(obj);
-                    using(var stringContent = new StringContent(json, Encoding.UTF8, "application/json"))
+                    using(var request = new HttpRequestMessage(HttpMethod.Post, fullUrl))
                     {
-                        request.Content = stringContent;
-
-                        using(var response = await client
-                            .SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
-                            .ConfigureAwait(false))
+                        var json = JsonConvert.SerializeObject(obj);
+                        using(var stringContent = new StringContent(json, Encoding.UTF8, "application/json"))
                         {
-                            if(response.IsSuccessStatusCode)
+                            request.Content = stringContent;
+
+                            using(var response = await client
+                                .SendAsync(request, HttpCompletionOption.ResponseHeadersRead)
+                                .ConfigureAwait(false))
                             {
-                                return await response.Content.ReadAsStringAsync();
+                                if(response.IsSuccessStatusCode)
+                                {
+                                    return await response.Content.ReadAsStringAsync();
+                                }
+                                else
+                                {
+                                    var errorContent = await response.Content.ReadAsStringAsync();
+                                    throw new HttpRequestException($"Request failed with status code {response.StatusCode}: {errorContent}");
+                                }
                             }
-                            return "ERROR";
                         }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Exception in Post: {e.Message}");
+                throw; // Re-throw the exception after logging
             }
         }
     }

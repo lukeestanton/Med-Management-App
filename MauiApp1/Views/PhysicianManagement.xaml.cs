@@ -1,5 +1,6 @@
 using MauiApp1.ViewModels;
 using MedManagementLibrary;
+using MedManagementLibrary.DTO;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 

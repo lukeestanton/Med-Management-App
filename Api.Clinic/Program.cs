@@ -1,9 +1,18 @@
+using Api.Clinic.Enterprise;
+using MedManagementLibrary;
+using MedManagementLibrary.DTO;
+using Api.Clinic.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Register Database and PhysicianEC
+builder.Services.AddScoped<DatabaseHelper>();
+builder.Services.AddScoped<PhysicianEC>();
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

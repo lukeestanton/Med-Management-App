@@ -16,7 +16,7 @@
         <ListView
             x:Name="PhysiciansListView"
             ItemsSource="{Binding Physicians}"
-            SelectedItem="{Binding SelectedPhysician}"
+            SelectedItem="{Binding SelectedPhysician, Mode=TwoWay}"
             HasUnevenRows="True"
             SelectionMode="Single">
             

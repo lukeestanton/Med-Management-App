@@ -33,7 +33,6 @@ namespace MedManagementLibrary
         private static PhysicianServiceProxy? instance;
         private PhysicianServiceProxy()
         {
-            instance = null;
 
             var physiciansData = new WebRequestHandler().Get("/Physician").Result;
 
@@ -80,8 +79,9 @@ namespace MedManagementLibrary
 
         public async Task<PhysicianDTO?> AddOrUpdatePhysician(PhysicianDTO physician)
         {
-            var payload = await new WebRequestHandler().Post("/physician", physician);
+            var payload = await new WebRequestHandler().Post("/Physician", physician);
             var newPhysician = JsonConvert.DeserializeObject<PhysicianDTO>(payload);
+
             if(newPhysician != null && newPhysician.Id > 0 && physician.Id == 0)
             {
                 Physicians.Add(newPhysician);
@@ -89,20 +89,21 @@ namespace MedManagementLibrary
             else if(newPhysician != null && physician != null && physician.Id > 0 && physician.Id == newPhysician.Id)
             {
                 var currentPhysician = Physicians.FirstOrDefault(p => p.Id == newPhysician.Id);
-                var index = Physicians.Count;
                 if (currentPhysician != null)
                 {
-                    index = Physicians.IndexOf(currentPhysician);
-                    Physicians.RemoveAt(index);
+                    var index = Physicians.IndexOf(currentPhysician);
+                    Physicians[index] = newPhysician;
                 }
-                Physicians.Insert(index, newPhysician);
+                else
+                {
+                    Physicians.Add(newPhysician);
+                }
             }
 
             return newPhysician;
-
         }
 
-        public async void DeletePhysician(int id) {
+        public async Task DeletePhysician(int id) {
             var physicianToRemove = Physicians.FirstOrDefault(p => p.Id == id);
 
             if (physicianToRemove != null)
